@@ -1,4 +1,4 @@
-<div class="w-full mx-auto relative" x-data="{
+<div class="w-full mx-auto relative group" x-data="{
     activeSlide: 1,
     slides: [
         { id: 1, image: 'https://picsum.photos/902/320?random=1' },
@@ -22,21 +22,21 @@
     </template>
 
     {{-- Back/Next Button --}}
-    <div class="absolute inset-0 flex">
-        <div class="flex items-center justify-start w-1/2">
+    <div class="absolute inset-0 group-hover:flex hidden transition-all duration-300 ease-in-out">
+        <div class="flex items-center justify-start w-1/2 ">
             <button x-on:click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1"
-                class="bg-slate-100 text-slate-500 hover:bg-blue-500 hover:text-white transition font-bold rounded-full w-12 h-12 shadow flex justify-center items-center -ml-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                class="bg-slate-100 text-slate-900 hover:bg-sky-300 hover:text-blue-800 transition font-extrabold rounded-full w-9 h-9 shadow flex justify-center items-center -ml-[19px] backdrop-blur-md bg-white/30 border border-white/20 p-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
 
             </button>
         </div>
-        <div class="flex items-center justify-end w-1/2">
+        <div class="flex items-center justify-end w-1/2 group">
             <button x-on:click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1"
-                class="bg-slate-100 text-slate-500 hover:bg-blue-500 hover:text-white transition font-bold rounded-full w-12 h-12 shadow flex justify-center items-center -mr-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                class="bg-slate-100 text-slate-900 hover:bg-sky-300 hover:text-blue-800 transition font-extrabold rounded-full w-9 h-9 shadow flex justify-center items-center -mr-[19px] backdrop-blur-md bg-white/30 border border-white/20 p-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
@@ -45,11 +45,10 @@
     </div>
 
     {{-- Buttons --}}
-    <div class="absolute w-full flex justify-center px-4">
+    <div class="absolute w-full flex justify-center px-4 bottom-3 left-1/2 -translate-x-1/2 space-x-1 z-20">
         <template x-for="slide in slides" :key="slide.id">
-            <button
-                class="flex-1 w-4 h-2 mt-4 mx-2 mb-2 rounded-full overflow-hidden transition-colors duration-200 ease-out hover:bg-slate-600 hover:shadow-lg"
-                :class="{ 'bg-blue-600': activeSlide === slide.id, 'bg-slate-300': activeSlide !== slide.id }"
+            <button class="w-6 h-1 rounded-full transition-colors duration-200 ease-out hover:bg-slate-600"
+                :class="{ 'bg-sky-300': activeSlide === slide.id, 'bg-slate-300': activeSlide !== slide.id }"
                 x-on:click="activeSlide = slide.id"></button>
         </template>
     </div>

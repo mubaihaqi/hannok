@@ -7,9 +7,14 @@
                 </a>
                 <div class="inline-flex gap-12 items-center">
                     <ul class="inline-flex gap-6 font-semibold text-base text-sky-700">
-                        <a href="/promo">Promo</a>
-                        <a href="/toko">Toko Kami</a>
-                        <a href="/contact">Hubungi Kami</a>
+                        <a href="/promo"
+                            class="hover:text-transparent hover:bg-gradient-to-r hover:from-sky-500 hover:to-teal-400 hover:bg-clip-text transition ease-in-out">Promo</a>
+                        <a href="/toko"
+                            class="hover:text-transparent hover:bg-gradient-to-r hover:from-sky-500 hover:to-teal-400 hover:bg-clip-text transition ease-in-out">Toko
+                            Kami</a>
+                        <a href="/contact"
+                            class="hover:text-transparent hover:bg-gradient-to-r hover:from-sky-500 hover:to-teal-400 hover:bg-clip-text transition ease-in-out">Hubungi
+                            Kami</a>
                     </ul>
                     <a href="/profil">
                         <img src="https://picsum.photos/32" alt="sample"

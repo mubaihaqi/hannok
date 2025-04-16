@@ -12,12 +12,12 @@
     <title>Hannok.com</title>
 </head>
 
-<body class="h-full">
+<body class="h-[900vh]">
     <div class="min-h-full">
         <x-navbar></x-navbar>
 
         <main>
-            <div class="mx-auto max-w-7xl pt-12">
+            <div class="mx-auto max-w-7xl pt-12 h-full">
                 <!-- Your content -->
                 {{ $slot }}
             </div>
