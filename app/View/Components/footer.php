@@ -6,17 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class topauthors extends Component
+class footer extends Component
 {
     /**
      * Create a new component instance.
      */
-
-    public $authors;
-
-    public function __construct($authors)
+    public function __construct()
     {
-        $this->authors = $authors;
+        //
     }
 
     /**
@@ -24,6 +21,6 @@ class topauthors extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.topauthors');
+        return view('components.footer');
     }
 }

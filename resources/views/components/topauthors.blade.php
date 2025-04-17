@@ -18,46 +18,21 @@
     <div class="mt-4 w-full h-full flex gap-4">
         {{-- Card Author --}}
 
-        <a href="/authors" class="w-1/4 aspect-[2/1] rounded-xl overflow-hidden relative shadow-lg"
-            style="background-image: url('https://picsum.photos/320/160?random=6')">
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-5">
-                <div class="block text-sky-100">
-                    <h2 class="font-bold text-center mb-1 text-2xl">Top Authors</h2>
-                    <p class="text-base font-medium">Aku Jawa</p>
+        @foreach ($authors as $index => $author)
+            <a href="/authors"
+                class="w-1/4 aspect-[2/1] rounded-xl overflow-hidden relative shadow-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                style="background-image: url('https://picsum.photos/320/160?blur=5')">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-between px-8 gap-2">
+                    <div class="block text-sky-100">
+                        <h2 class="font-bold text-start mb-1 text-3xl w-30">
+                            {{ ['Most Popular', 'Trending Now', "Editors' Pick", 'New Voices'][$index] }}
+                        </h2>
+                        <p class="text-base font-medium w-[130px]">{{ $author['name'] }}</p>
+                    </div>
+                    <img src="{{ $author['img'] }}" alt="{{ $author['name'] }}" class="rounded-full h-44 items-end">
                 </div>
-                <img src="https://picsum.photos/120/160?random=6" alt="" class="rounded-full">
-            </div>
-        </a>
-        <a href="/authors" class="w-1/4 aspect-[2/1] rounded-xl overflow-hidden relative shadow-lg"
-            style="background-image: url('https://picsum.photos/320/160?random=6')">
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-5">
-                <div class="block text-sky-100">
-                    <h2 class="font-bold text-center mb-1 text-2xl">Top Authors</h2>
-                    <p class="text-base font-medium">Aku Jawa</p>
-                </div>
-                <img src="https://picsum.photos/120/160?random=6" alt="" class="rounded-full">
-            </div>
-        </a>
-        <a href="/authors" class="w-1/4 aspect-[2/1] rounded-xl overflow-hidden relative shadow-lg"
-            style="background-image: url('https://picsum.photos/320/160?random=6')">
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-5">
-                <div class="block text-sky-100">
-                    <h2 class="font-bold text-center mb-1 text-2xl">Top Authors</h2>
-                    <p class="text-base font-medium">Aku Jawa</p>
-                </div>
-                <img src="https://picsum.photos/120/160?random=6" alt="" class="rounded-full">
-            </div>
-        </a>
-        <a href="/authors" class="w-1/4 aspect-[2/1] rounded-xl overflow-hidden relative shadow-lg"
-            style="background-image: url('https://picsum.photos/320/160?random=6')">
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-5">
-                <div class="block text-sky-100">
-                    <h2 class="font-bold text-center mb-1 text-2xl">Top Authors</h2>
-                    <p class="text-base font-medium">Aku Jawa</p>
-                </div>
-                <img src="https://picsum.photos/120/160?random=6" alt="" class="rounded-full">
-            </div>
-        </a>
+            </a>
+        @endforeach
 
     </div>
 </div>

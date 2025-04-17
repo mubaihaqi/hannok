@@ -18,7 +18,7 @@
         {{-- Card Book --}}
         <a href="/books" class="w-1/6 group">
             <div
-                class="h-[354px] bg-sky-50 rounded-xl pt-1 group-hover:relative bottom-0 top-0 group-hover:bg-gradient-to-b from-sky-100 via-sky-100 to-teal-100 transition-all duration-1000 ease-in-out">
+                class="h-[354px] bg-sky-50 rounded-xl pt-1 group-hover:relative bottom-0 top-0 group-hover:bg-gradient-to-b hover:from-sky-100 hover:via-sky-100 hover:to-teal-100 transition-all duration-1000 ease-in-out">
                 <div class="flex items-center justify-center rounded-md mt-2 group-hover:relative bottom-0 top-0">
                     <div
                         class="overflow-hidden h-[150px] w-1/2 rounded-md shadow-md group-hover:absolute transition-all duration-1000 group-hover:scale-y-110 group-hover:scale-x-110 bottom-0 top-0">

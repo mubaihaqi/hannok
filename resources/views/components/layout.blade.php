@@ -12,7 +12,7 @@
     <title>Hannok.com</title>
 </head>
 
-<body class="h-[900vh]">
+<body class="h-auto">
     <div class="min-h-full">
         <x-navbar></x-navbar>
 
@@ -22,6 +22,8 @@
                 {{ $slot }}
             </div>
         </main>
+
+        <x-footer></x-footer>
     </div>
 </body>
 
