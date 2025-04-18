@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,12 +13,12 @@ class Book extends Model
     /** @use HasFactory<\Database\Factories\BookFactory> */
     use HasFactory;
 
-    public function authors(): BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
     }
 
-    public function genres(): BelongsTo
+    public function genre(): BelongsTo
     {
         return $this->belongsTo(Genre::class);
     }

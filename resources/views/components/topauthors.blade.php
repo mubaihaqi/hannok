@@ -1,3 +1,5 @@
+@props(['topAuthors'])
+
 <div class="mt-10 w-full">
     <a href="/authors" class="flex items-center justify-between">
         <h2
@@ -15,21 +17,28 @@
         </div>
     </a>
 
+    @php
+        $juduls = ['Most Popular', 'New Voices', 'Editors Pick', 'Trending Now'];
+    @endphp
+
+
+
     <div class="mt-4 w-full h-full flex gap-4">
         {{-- Card Author --}}
-
-        @foreach ($authors as $index => $author)
+        @foreach ($topAuthors as $topAuthor)
             <a href="/authors"
                 class="w-1/4 aspect-[2/1] rounded-xl overflow-hidden relative shadow-lg hover:scale-105 transition-all duration-300 ease-in-out"
                 style="background-image: url('https://picsum.photos/320/160?blur=5')">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-between px-8 gap-2">
                     <div class="block text-sky-100">
+
                         <h2 class="font-bold text-start mb-1 text-3xl w-30">
-                            {{ ['Most Popular', 'Trending Now', "Editors' Pick", 'New Voices'][$index] }}
+                            {{ $juduls[$loop->index] ?? 'Top Author' }}
                         </h2>
-                        <p class="text-base font-medium w-[130px]">{{ $author['name'] }}</p>
+
+                        <p class="text-base font-medium w-[130px]">{{ $topAuthor->name }}</p>
                     </div>
-                    <img src="{{ $author['img'] }}" alt="{{ $author['name'] }}" class="rounded-full h-44 items-end">
+                    <img src="{{ asset('images/jessica.png') }}" alt="" class="rounded-full h-44 items-end">
                 </div>
             </a>
         @endforeach

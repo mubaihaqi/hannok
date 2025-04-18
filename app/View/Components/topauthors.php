@@ -14,7 +14,7 @@ class topauthors extends Component
 
     public $authors;
 
-    public function __construct($authors)
+    public function __construct($authors = null)
     {
         $this->authors = $authors;
     }

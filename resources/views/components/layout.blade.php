@@ -17,10 +17,9 @@
         <x-navbar></x-navbar>
 
         <main>
-            <div class="mx-auto max-w-7xl pt-12 h-full">
-                <!-- Your content -->
-                {{ $slot }}
-            </div>
+
+            <!-- Your content -->
+            {{ $slot }}
         </main>
 
         <x-footer></x-footer>

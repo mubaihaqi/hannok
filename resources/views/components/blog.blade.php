@@ -1,3 +1,4 @@
+@props(['latestBlogs'])
 <div class="mt-10 w-full">
     <a href="/blogs" class="flex items-center justify-between">
         <h2
@@ -15,51 +16,24 @@
         </div>
     </a>
     <div class="flex w-full gap-4">
-        <a href="/blogs">
-            <div class="w-full  mt-6 gap-4 bg-sky-100 rounded-xl shadow-lg overflow-hidden group">
-                <img src="https://picsum.photos/720/360?random=1"
-                    class="object-cover group-hover:scaleto-110 bottom-0 transition-all aspect-[3/1] duration-1000 ease-in-out"
-                    alt="Blog Image" />
-                <div class="px-4 py-2">
-                    <h3 class="font-semibold text-lg">Best Books of the 21st Century</h3>
-                    <div class="flex gap-2 items-center text-base font-medium text-slate-600">
-                        <p>John Doe</p>
-                        <p>.</p>
-                        <p>24 Minutes Ago</p>
+        @foreach ($latestBlogs as $latestBlog)
+            <a href="/blogs">
+                <div
+                    class="w-full  mt-6 gap-4 bg-sky-100 rounded-xl shadow-lg overflow-hidden group hover:scale-105 transition-all duration-300 ease-in-out">
+                    <img src="https://picsum.photos/720/360?random={{ $latestBlog->id }}&?blur=2" alt=""
+                        class="object-cover group-hover:scaleto-110 bottom-0 transition-all aspect-[3/1] duration-1000 ease-in-out"
+                        alt="Blog Image" />
+                    <div class="px-4 py-2">
+                        <h3 class="font-semibold text-lg line-clamp-1">{{ $latestBlog->title }}</h3>
+                        <div class="flex gap-2 items-center text-base font-medium text-slate-600">
+                            <p>{{ $latestBlog->author->name }}</p>
+                            <p>.</p>
+                            <p>{{ $latestBlog->created_at->diffForHumans() }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-        <a href="/blogs">
-            <div class="w-full  mt-6 gap-4 bg-sky-100 rounded-xl shadow-lg overflow-hidden group">
-                <img src="https://picsum.photos/720/360?random=1"
-                    class="object-cover group-hover:scaleto-110 bottom-0 transition-all aspect-[3/1] duration-1000 ease-in-out"
-                    alt="Blog Image" />
-                <div class="px-4 py-2">
-                    <h3 class="font-semibold text-lg">Best Books of the 21st Century</h3>
-                    <div class="flex gap-2 items-center text-base font-medium text-slate-600">
-                        <p>John Doe</p>
-                        <p>.</p>
-                        <p>24 Minutes Ago</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/blogs">
-            <div class="w-full  mt-6 gap-4 bg-sky-100 rounded-xl shadow-lg overflow-hidden group">
-                <img src="https://picsum.photos/720/360?random=1"
-                    class="object-cover group-hover:scaleto-110 bottom-0 transition-all aspect-[3/1] duration-1000 ease-in-out"
-                    alt="Blog Image" />
-                <div class="px-4 py-2">
-                    <h3 class="font-semibold text-lg">Best Books of the 21st Century</h3>
-                    <div class="flex gap-2 items-center text-base font-medium text-slate-600">
-                        <p>John Doe</p>
-                        <p>.</p>
-                        <p>24 Minutes Ago</p>
-                    </div>
-                </div>
-            </div>
-        </a>
+            </a>
+        @endforeach
 
     </div>
 </div>

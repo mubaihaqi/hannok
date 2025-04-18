@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
 
         $genres = Genre::all();
 
-        Blog::factory(500)
+        Blog::factory(100)
             ->recycle(Author::all()->random(50))
             ->create()
             ->each(function ($blog) use ($genres) {
-                $blog->genres()->attach($genres->random(1, 3)->pluck('id'));
+                $blog->genres()->attach($genres->random(3)->pluck('id'));
             });
 
-        Book::factory(800)
+        Book::factory(5000)
             ->recycle(Author::all()->random(50))
             ->create([
                 'genre_id' => fn() => $genres->random()->id,

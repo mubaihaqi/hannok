@@ -8,7 +8,7 @@
         </svg>
 
         <input type="text" placeholder="Search..."
-            class="placeholder-sky-950 bg-transparent w-2/3 h-full outline-none text-slate-900 font-medium backdrop-blur-md flex items-center">
+            class="placeholder-sky-950 bg-transparent w-2/3 h-full !outline-none text-slate-900 font-medium backdrop-blur-md flex items-center">
     </div>
 
     <div

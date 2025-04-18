@@ -19,7 +19,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->sentence(3);
+        $title = fake()->sentence(6);
         return [
             'title' => $title,
             'slug' => Str::slug($title) . '-' . Str::random(5),
