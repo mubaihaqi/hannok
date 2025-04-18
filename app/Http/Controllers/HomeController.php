@@ -31,7 +31,7 @@ class HomeController extends Controller
             ->first();
 
         // BUKU TERBARU
-        $latestBooks = Book::latest()->take(6)->get();
+        $latestBooks = Book::latest()->take(5)->get();
 
         // AUTHORSGENRE
         $topGenres = Genre::withCount('books')

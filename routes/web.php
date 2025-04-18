@@ -22,7 +22,9 @@ Route::get('/profil', function () {
     return view('profil');
 });
 
-Route::get('/books', [BookController::class, 'index']);
+Route::get('/books', function () {
+    return view('books');
+});
 
 Route::get('/book', function () {
     return view('book');
