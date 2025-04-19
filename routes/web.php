@@ -1,14 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\PromoController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/promo', function () {
-    return view('promo');
-});
+Route::get('/promo', [PromoController::class, 'index']);
 
 Route::get('/toko', function () {
     return view('toko');
@@ -22,9 +22,7 @@ Route::get('/profil', function () {
     return view('profil');
 });
 
-Route::get('/books', function () {
-    return view('books');
-});
+Route::get('/books', [BooksController::class, 'index']);
 
 Route::get('/book', function () {
     return view('book');

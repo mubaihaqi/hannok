@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Genre;
+use App\Models\Promo;
 use App\Models\Author;
 use Illuminate\Database\Seeder;
 
@@ -28,10 +29,12 @@ class DatabaseSeeder extends Seeder
                 $blog->genres()->attach($genres->random(3)->pluck('id'));
             });
 
-        Book::factory(5000)
+        Book::factory(500)
             ->recycle(Author::all()->random(50))
             ->create([
                 'genre_id' => fn() => $genres->random()->id,
             ]);
+
+        Promo::factory(24)->create();
     }
 }
