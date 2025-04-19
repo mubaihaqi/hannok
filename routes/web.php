@@ -5,14 +5,13 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\PromoController;
+use App\Http\Controllers\TokoKamiController;
 
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/promo', [PromoController::class, 'index']);
 
-Route::get('/toko', function () {
-    return view('toko');
-});
+Route::get('/toko', [TokoKamiController::class, 'index']);
 
 Route::get('/contact', function () {
     return view('contact');

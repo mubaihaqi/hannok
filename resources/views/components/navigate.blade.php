@@ -26,5 +26,6 @@
             </li>
         </ol>
     </nav>
-    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ $title }}</h2>
+    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl {{ $gaketok }}">
+        {{ $title }}</h2>
 </div>

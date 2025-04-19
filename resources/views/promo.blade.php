@@ -8,6 +8,8 @@
                 <x-navigate>
                     <x-slot:title>{{ $title = 'Promo & Info' }}</x-slot:title>
                     <x-slot:href>{{ $href = '/promo' }}</x-slot:href>
+                    <x-slot:gaketok>{{ $gaketok = '' }}</x-slot:gaketok>
+
                 </x-navigate>
             </div>
 

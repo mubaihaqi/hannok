@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Genre;
 use App\Models\Promo;
 use App\Models\Author;
+use App\Models\TokoKami;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,5 +37,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
         Promo::factory(24)->create();
+
+        TokoKami::factory(16)->create();
     }
 }
