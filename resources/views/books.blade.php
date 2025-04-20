@@ -8,6 +8,7 @@
                 <x-navigate>
                     <x-slot:title>{{ $title = 'Books' }}</x-slot:title>
                     <x-slot:href>{{ $href = '/books' }}</x-slot:href>
+                    <x-slot:gaketok>{{ $gaketok = '' }}</x-slot:gaketok>
                 </x-navigate>
 
                 <div class="flex items-center space-x-4">

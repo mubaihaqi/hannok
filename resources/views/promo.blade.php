@@ -56,6 +56,8 @@
         <div x-show="showModal" x-transition @keydown.escape.window="showModal = false"
             class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
             <div class="group bg-white p-6 rounded-lg w-full max-w-2xl" @click.away="showModal = false">
+                {{-- <img :src="selectedPromo?.image" alt="Promo Image"
+                    class="object-cover bottom-0 shadow-lg transition-all aspect-[8/4] duration-1000 ease-in-out rounded-md group-hover:scale-105 group-hover:scale-y-110" /> --}}
                 <img src="https://picsum.photos/720/360?random={{ $allPromo->id }}&?blur=2" alt=""
                     class="object-cover bottom-0 shadow-lg transition-all aspect-[8/4] duration-1000 ease-in-out rounded-md group-hover:scale-105 group-hover:scale-y-110" />
                 <h3 class="text-xl font-semibold mt-4 group-hover:mt-6 transition-all duration-1000 ease-in-out"
