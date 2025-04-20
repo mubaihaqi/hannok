@@ -6,10 +6,12 @@
             <!-- Heading -->
             <div class="mb-3 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                 <x-navigate>
-                    <x-slot:title>{{ $title = 'Promo & Info' }}</x-slot:title>
-                    <x-slot:href>{{ $href = '/promo' }}</x-slot:href>
+                    <x-slot:title>{{ $title = 'Promo' }}</x-slot:title>
+                    <x-slot:href>{{ $href = '' }}</x-slot:href>
+                    <x-slot:href2>{{ $href = '' }}</x-slot:href2>
+                    <x-slot:title2>{{ $title2 = '' }}</x-slot:title2>
                     <x-slot:gaketok>{{ $gaketok = '' }}</x-slot:gaketok>
-
+                    <x-slot:gaketok2>{{ $gaketok2 = 'hidden' }}</x-slot:gaketok2>
                 </x-navigate>
             </div>
 

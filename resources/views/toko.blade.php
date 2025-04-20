@@ -8,7 +8,10 @@
                 <x-navigate>
                     <x-slot:title>{{ $title = 'Toko Kami' }}</x-slot:title>
                     <x-slot:href>{{ $href = '' }}</x-slot:href>
+                    <x-slot:href2>{{ $href = '' }}</x-slot:href2>
+                    <x-slot:title2>{{ $title2 = '' }}</x-slot:title2>
                     <x-slot:gaketok>{{ $gaketok = 'hidden' }}</x-slot:gaketok>
+                    <x-slot:gaketok2>{{ $gaketok2 = 'hidden' }}</x-slot:gaketok2>
                 </x-navigate>
             </div>
         </div>
@@ -20,27 +23,27 @@
             <div class="relative h-56 overflow-hidden md:h-96">
                 <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://picsum.photos/2000/500?random=1&?blur=1"
+                    <img src="https://picsum.photos/2000/500?random=1&?blur=17"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://picsum.photos/2000/500?random=2&?blur=1"
+                    <img src="https://picsum.photos/2000/500?random=2&?blur=18"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://picsum.photos/2000/500?random=3&?blur=1"
+                    <img src="https://picsum.photos/2000/500?random=3&?blur=19"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 4 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://picsum.photos/2000/500?random=4&?blur=1"
+                    <img src="https://picsum.photos/2000/500?random=4&?blur=20"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 5 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://picsum.photos/2000/500?random=5&?blur=1"
+                    <img src="https://picsum.photos/2000/500?random=5&?blur=21"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
             </div>
@@ -145,7 +148,7 @@
                 <div class="group bg-white p-6 rounded-lg w-full max-w-2xl" @click.away="showModal = false">
                     {{-- <img :src="selectedPromo?.image" alt="Promo Image"
                         class="object-cover bottom-0 shadow-lg transition-all aspect-[8/4] duration-1000 ease-in-out rounded-md group-hover:scale-105 group-hover:scale-y-110" /> --}}
-                    <img src="https://picsum.photos/720/360?random={{ $allToko->id }}&?blur=2" alt=""
+                    <img src="https://picsum.photos/224/143?random={{ $allToko->id }}&?blur=2" alt=""
                         class="object-cover bottom-0 shadow-lg transition-all aspect-[8/4] duration-1000 ease-in-out rounded-md group-hover:scale-105 group-hover:scale-y-110" />
                     <div class="flex flex-1 flex-col justify-between">
                         <div

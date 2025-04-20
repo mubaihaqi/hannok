@@ -34,7 +34,7 @@
             </div>
 
             <div class="flex items-center lg:space-x-2">
-                <a href="/" class="flex">
+                <a href="/cart" class="flex">
                     <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button"
                         class="inline-flex items-center rounded-lg justify-center p-2 pr-[10px] hover:bg-sky-50 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
                         <span class="sr-only">

@@ -1,22 +1,34 @@
 <x-layout>
-    <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
+    <section class="py-8 bg-white dark:bg-gray-900 antialiased">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <!-- Heading -->
+            <div class="mb-6 items-end justify-between space-y-4 sm:flex sm:space-y-0">
+                <x-navigate>
+                    <x-slot:title>{{ $title = 'Books' }}</x-slot:title>
+                    <x-slot:href>{{ $href = '/books' }}</x-slot:href>
+                    <x-slot:href2>{{ $href = '' }}</x-slot:href2>
+                    <x-slot:title2>{{ $book->title }}</x-slot:title2>
+                    <x-slot:gaketok>{{ $gaketok = 'hidden' }}</x-slot:gaketok>
+                    <x-slot:gaketok2>{{ $gaketok = '' }}</x-slot:gaketok2>
+                </x-navigate>
+            </div>
+        </div>
+
         <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                    <img class="w-full dark:hidden"
-                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
-                    <img class="w-full hidden dark:block"
-                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
+                    <img class="w-full dark:hidden" src="https://picsum.photos/600?random={{ $book->id }}"
+                        alt="" />
+
                 </div>
 
                 <div class="mt-6 sm:mt-8 lg:mt-0">
                     <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                        Apple iMac 24" All-In-One Computer, Apple M1, 8GB RAM, 256GB SSD,
-                        Mac OS, Pink
+                        {{ $book->title }}
                     </h1>
                     <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
                         <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white">
-                            $1,249.99
+                            Rp<span>{{ number_format($book->harga_buku, 0, ',', '.') }}</span>
                         </p>
 
                         <div class="flex items-center gap-2 mt-2 sm:mt-0">
@@ -53,7 +65,7 @@
                                 </svg>
                             </div>
                             <p class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
-                                (5.0)
+                                {{ $book->rating }}
                             </p>
                             <a href="#"
                                 class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white">
@@ -92,15 +104,11 @@
                     <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
                     <p class="mb-6 text-gray-500 dark:text-gray-400">
-                        Studio quality three mic array for crystal clear calls and voice
-                        recordings. Six-speaker sound system for a remarkably robust and
-                        high-quality audio experience. Up to 256GB of ultrafast SSD storage.
+                        {{ $book->description }}
                     </p>
 
                     <p class="text-gray-500 dark:text-gray-400">
-                        Two Thunderbolt USB 4 ports and up to two USB 3 ports. Ultrafast
-                        Wi-Fi 6 and Bluetooth 5.0 wireless. Color matched Magic Mouse with
-                        Magic Keyboard or Magic Keyboard with Touch ID.
+                        {{ $book->preview }}
                     </p>
                 </div>
             </div>

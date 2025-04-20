@@ -25,16 +25,17 @@
             <div
                 class="rounded-xl border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-700 dark:bg-gray-800 w-1/5 group hover:scale-105 transition duration-300 ease-in-out hover:shadow-sky-200 hover:shadow-lg">
                 <div class="h-56 w-full">
-                    <a href="/book">
+                    <a href="/book/{{ $latestBook['slug'] }}">
                         <img class="mx-auto h-full dark:hidden rounded-xl group-hover:scale-105"
                             src="https://picsum.photos/500?random={{ $latestBook->id }}" alt="" />
                     </a>
                 </div>
                 <div class="pt-2">
                     <div class="mb-2 flex items-center justify-between gap-4">
-                        <span
-                            class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                            {{ $latestBook->author->name }}</span>
+                        <a href="/books?author={{ $latestBook->author->username }}">
+                            <span
+                                class="rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                                {{ $latestBook->author->name }}</span></a>
 
                         <div class="flex items-center justify-end gap-1">
                             <button type="button" data-tooltip-target="tooltip-quick-look"
@@ -73,7 +74,7 @@
                         </div>
                     </div>
 
-                    <a href="/book"
+                    <a href="/book/{{ $latestBook['slug'] }}"
                         class="block text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white h-[70px]">{{ $latestBook->title }}</a>
 
                     <div class="pl-1 mt-2 flex items-center">
