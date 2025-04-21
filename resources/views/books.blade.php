@@ -7,16 +7,17 @@
             <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                 <x-navigate>
                     <x-slot:title>{{ $title = 'Books' }}</x-slot:title>
-                    <x-slot:href>{{ $href = '' }}</x-slot:href>
+                    <x-slot:href>{{ $href = '/books' }}</x-slot:href>
                     <x-slot:href2>{{ $href = '' }}</x-slot:href2>
-                    <x-slot:title2>{{ $title2 = '' }}</x-slot:title2>
+                    <x-slot:title2>{{ $title2 = 'Hannah Abigail' }}</x-slot:title2>
                     <x-slot:gaketok>{{ $gaketok = 'hidden' }}</x-slot:gaketok>
-                    <x-slot:gaketok2>{{ $gaketok2 = 'hidden' }}</x-slot:gaketok2>
+                    <x-slot:gaketok2>{{ $gaketok2 = '' }}</x-slot:gaketok2>
                 </x-navigate>
 
                 {{-- Buttons --}}
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-4 relative">
                     <button data-modal-toggle="filterModal" data-modal-target="filterModal" type="button"
+                        id="filterDropdownButton1" data-dropdown-toggle="dropdownFilter1"
                         class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
                         <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -30,6 +31,21 @@
                                 d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
+                    <div id="dropdownFilter1"
+                        class="z-50 w-[620px] divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 !absolute !left-0"
+                        data-popper-placement="bottom">
+                        <ul class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
+                            aria-labelledby="sortDropdownButton">
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    The most popular </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    {{-- Sort --}}
                     <button id="sortDropdownButton1" data-dropdown-toggle="dropdownSort1" type="button"
                         class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
                         <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -84,15 +100,14 @@
                 </div>
             </div>
 
-
             {{-- Ini the Main nya --}}
             <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
                 {{-- Cards --}}
                 @foreach ($allBooks as $index => $allBook)
-                    <template x-if="{{ $index }} < visibleCount">
+                    <template x-if="visibleCount > {{ $index }}">
                         <div
                             class="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 group hover:scale-105 transition duration-300 ease-in-out hover:shadow-sky-200 hover:shadow-lg">
-                            <div @click="selectedPromo = @js($allBook), showModal = true"
+                            <div @click="selectedBook = @js($allBook), showModal = true"
                                 class="h-56 w-full cursor-pointer">
                                 <a href="/book/{{ $allBook['slug'] }}">
                                     <img src="https://picsum.photos/500?random={{ $allBook->id }}" alt=""
@@ -102,7 +117,7 @@
 
                             <div class="pt-6">
                                 <div class="mb-4 flex items-center justify-between gap-4">
-                                    <a href="/author?author={{ $allBook->author->username }}">
+                                    <a href="/books?author={{ $allBook->author->username }}">
                                         <span
                                             class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                                             {{ $allBook->author->name }} </span></a>
@@ -111,8 +126,9 @@
                                         <button type="button" data-tooltip-target="tooltip-quick-look"
                                             class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                             <span class="sr-only"> Quick look </span>
-                                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <svg class="h-5 w-5" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="none" viewBox="0 0 24 24">
                                                 <path stroke="currentColor" stroke-width="2"
                                                     d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
                                                 <path stroke="currentColor" stroke-width="2"
@@ -147,7 +163,7 @@
                                 </div>
 
                                 <a href="/book/{{ $allBook['slug'] }}"
-                                    class="block text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white h-[70px]">{{ $allBook->title }}</a>
+                                    class="block text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white h-[70px] line-clamp-3">{{ $allBook->title }}</a>
 
                                 <div class="pl-1 mt-2 flex items-center">
                                     <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
@@ -221,7 +237,7 @@
                             </div>
 
                             {{-- Floating Genre --}}
-                            <a href="">
+                            <a href="/books?genre={{ $allBook->genre->slug }}">
                                 <div
                                     class="absolute text-xs font-medium -top-1 right-[7%] z-10 border-dotted border-2 border-sky-200 rounded-md bg-sky-200 px-2 text">
                                     {{ $allBook->genre->nama }}
@@ -230,9 +246,9 @@
                         </div>
                     </template>
                 @endforeach
-
             </div>
 
+            {{-- Show More Button --}}
             <div class="w-full text-center mt-6">
                 <button x-show="visibleCount < {{ count($allBooks) }}" @click="visibleCount += 8"
                     class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-teal-300 to-sky-300 group-hover:from-teal-300 group-hover:to-sky-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-sky-200 dark:focus:ring-sky-800 hover:scale-105 transition-all duration-300 ease-in-out">
@@ -245,7 +261,7 @@
         </div>
 
         <!-- Filter modal -->
-        <form action="#" method="get" id="filterModal" tabindex="-1" aria-hidden="true"
+        {{-- <form action="#" method="get" id="filterModal" tabindex="-1" aria-hidden="true"
             class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
             <div class="relative h-full w-full max-w-xl md:h-auto">
                 <!-- Modal content -->
@@ -266,6 +282,6 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form> --}}
     </section>
 </x-layout>
