@@ -4,7 +4,7 @@
         <h2 class="text-3xl font-bold text-sky-800 w-auto">
             Blogs</h2>
         <x-filler></x-filler>
-        <a href="/books">
+        <a href="/blogs">
             <button
                 class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-teal-300 to-sky-300 group-hover:from-teal-300 group-hover:to-sky-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800 hover:scale-105 transition-all duration-300 ease-in-out">
                 <span

@@ -1,265 +1,294 @@
 <x-layout>
-    {{-- <article class="flex bg-white transition hover:shadow-xl dark:bg-gray-900 dark:shadow-gray-800/25">
-        <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
-            <time datetime="2022-10-10"
-                class="flex items-center justify-between gap-4 text-xs font-bold text-gray-900 uppercase dark:text-white">
-                <span>2022</span>
-                <span class="w-px flex-1 bg-gray-900/10 dark:bg-white/10"></span>
-                <span>Oct 10</span>
-            </time>
-        </div>
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <!-- Heading & Filters -->
+            <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
+                <x-navigate>
+                    <x-slot:title>{{ $title = 'Blogs' }}</x-slot:title>
+                    <x-slot:href>{{ $href = '/blogs' }}</x-slot:href>
+                    <x-slot:href2>{{ $href = '' }}</x-slot:href2>
+                    <x-slot:title2>{{ $title2 }}</x-slot:title2>
+                    <x-slot:gaketok>{{ $gaketok = 'hidden' }}</x-slot:gaketok>
+                    <x-slot:gaketok2>{{ $gaketok2 }}</x-slot:gaketok2>
+                </x-navigate>
 
-        <div class="hidden sm:block sm:basis-56">
-            <img alt=""
-                src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-                class="aspect-square h-full w-full object-cover" />
-        </div>
+                {{-- Buttons --}}
+                <div class="relative flex items-center space-x-4" x-data="{ open: false }" @click.away="open = false">
+                    <form class="w-64" action="/blogs/search" method="GET">
+                        <label for="default-search"
+                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="search" id="default-search" name="query"
+                                class="block w-full p-3 py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500 placeholder-slate-400"
+                                placeholder="Cari Blogs..." autocomplete="off" required />
+                        </div>
+                    </form>
 
-        <div class="flex flex-1 flex-col justify-between">
-            <div class="border-s border-gray-900/10 p-4 sm:!border-l-transparent sm:p-6 dark:border-white/10">
-                <a href="#">
-                    <h3 class="font-bold text-gray-900 uppercase dark:text-white">
-                        Finding the right guitar for your style - 5 tips
-                    </h3>
-                </a>
+                    <button @click="open = !open" data-modal-target="filterModal" type="button"
+                        id="filterDropdownButton1"
+                        class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
+                        <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z" />
+                        </svg>
+                        Filters
+                        <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
 
-                <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700 dark:text-gray-200">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
-                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
-                    atque dignissimos. Molestias explicabo corporis voluptatem?
-                </p>
+                    <div x-show="open" x-transition id="dropdownFilter1"
+                        class="z-50 w-[620px] h-auto divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 !absolute -right-[30px] top-12"
+                        data-popper-placement="bottom">
+                        <div class="p-3">
+                            <label for="input-group-search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="input-group-search" placeholder="Search Author or Genre..."
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-600 dark:border-gray-500 placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    autocomplete="off">
+                            </div>
+
+                            <div class="inline-flex w-full mt-3 h-auto gap-1">
+                                <div class="w-1/2 h-full">
+                                    <p class="pl-3 pb-2 font-semibold text-base">
+                                        Genres
+                                    </p>
+                                    <ul class="h-[475px] px-3 mr-[20px] overflow-y-auto scrollbar-thin text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownSearchButton">
+                                        @foreach ($allGenres as $allGenre)
+                                            <li class="genre-item">
+                                                <a href="/blogs?genre={{ $allGenre->slug }}"
+                                                    class="flex items-center group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <div class="inline-flex justify-evenly w-full">
+                                                        <p
+                                                            class="ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300 group-hover:underline w-[160px]">
+                                                            {{ $allGenre->nama }}
+                                                        </p>
+                                                        <p
+                                                            class="text-xs font-normal text-slate-700 w-auto group-hover:scale-110 duration-300 transition ease-in-out">
+                                                            ({{ $allGenre->blogs->count() }} Blogs)
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                                <div class="w-1/2 h-full">
+                                    <p class="pl-3 pb-2 font-semibold text-base">
+                                        Authors
+                                    </p>
+                                    <ul class="h-[475px] px-3 mr-[20px] overflow-y-auto scrollbar-thin text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownSearchButton">
+                                        @foreach ($allAuthors as $allAuthor)
+                                            <li class="author-item">
+                                                <a href="/blogs?author={{ $allAuthor->username }}"
+                                                    class="flex items-center p-2 group rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <p
+                                                        class="ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300 group-hover:underline w-[160px]">
+                                                        {{ $allAuthor->name }}
+                                                    </p>
+                                                    <p
+                                                        class="text-xs font-normal text-slate-700 w-auto group-hover:scale-110 duration-300 transition ease-in-out">
+                                                        ({{ $allAuthor->blogs->count() }} Blogs)
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const searchInput = document.getElementById('input-group-search');
+                            const genreItems = document.querySelectorAll('.genre-item');
+                            const authorItems = document.querySelectorAll('.author-item');
+
+                            searchInput.addEventListener('keyup', function() {
+                                const keyword = this.value.toLowerCase();
+
+                                genreItems.forEach(item => {
+                                    const text = item.textContent.toLowerCase();
+                                    item.style.display = text.includes(keyword) ? 'block' : 'none';
+                                });
+
+                                authorItems.forEach(item => {
+                                    const text = item.textContent.toLowerCase();
+                                    item.style.display = text.includes(keyword) ? 'block' : 'none';
+                                });
+                            });
+                        });
+                    </script>
+
+                    {{-- Sort --}}
+                    <button id="sortDropdownButton1" data-dropdown-toggle="dropdownSort1" type="button"
+                        class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
+                        <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
+                        </svg>
+                        Sort
+                        <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="dropdownSort1"
+                        class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
+                        data-popper-placement="bottom">
+                        <ul class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
+                            aria-labelledby="sortDropdownButton">
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    The most popular </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Newest </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Increasing price </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Decreasing price </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    No. reviews </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Discount % </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="sm:flex sm:items-end sm:justify-end">
-                <a href="#"
-                    class="block bg-yellow-400 px-5 py-3 text-center text-xs font-bold text-gray-900 uppercase transition hover:bg-yellow-500">
-                    Read Blog
-                </a>
+            {{-- Ini the Main nya --}}
+            <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-3">
+                {{-- Cards --}}
+                @foreach ($allBlogs as $allBlog)
+                    <article
+                        class="relative h-[260px] group flex bg-white hover:shadow-xl hover:shadow-sky-100 dark:bg-gray-900 dark:shadow-gray-800/25 border-sky-200 border-2 border-dotted hover:scale-105 transition-all duration-400 ease-in-out">
+                        <div class="rotate-180 p-2 [writing-mode:_vertical-lr] bg-white-100">
+                            <time datetime="{{ $allBlog->created_at->format('Y-m-d') }}"
+                                class="flex items-center justify-between gap-4 text-xs font-bold text-gray-900 uppercase dark:text-white">
+                                <span>{{ $allBlog->created_at->format('d-m-Y') }}</span>
+                                <span class="w-px flex-1 bg-sky-800 dark:bg-white/10"></span>
+                                <span>{{ $allBlog->id }}</span>
+                            </time>
+                        </div>
+
+                        <div class="hidden sm:block xl:w-[200px]">
+                            <img alt=""
+                                src="https://picsum.photos/2000/500?grayscale&?random={{ $allBlog->id }}&?blur=1"
+                                class="aspect-square h-full w-full object-cover" />
+                        </div>
+
+                        <div class="flex flex-1 flex-col justify-between">
+                            <div
+                                class="border-s border-gray-900/10 p-4 sm:!border-l-transparent sm:p-6 dark:border-white/10">
+                                <a href="/blog/{{ $allBlog['slug'] }}">
+                                    <h3
+                                        class="font-bold
+                                    text-gray-900 uppercase dark:text-white line-clamp-3 hover:underline">
+                                        {{ $allBlog->title }}
+                                    </h3>
+                                </a>
+
+                                <p class="mt-2 line-clamp-4 text-sm/relaxed text-gray-700 dark:text-gray-200">
+                                    {{ $allBlog->body }}
+                                </p>
+                            </div>
+                            <div class="sm:flex sm:items-end sm:justify-end">
+                                <a href="/blog/{{ $allBlog['slug'] }}"
+                                    class="block bg-sky-300 px-5 py-3 text-center text-xs font-bold text-gray-900 uppercase transition hover:bg-sky-400">
+                                    Read Blog
+                                </a>
+                            </div>
+                        </div>
+
+                        {{-- Floating Author --}}
+                        <div
+                            class="absolute top-0 group-hover:!-top-5 !left-8 -z-10 transition-all duration-300 ease-in-out">
+                            <a href="/blogs?author={{ $allBlog->author->username }}"
+                                class="bg-sky-300 px-2  py-1 text-center text-xs font-bold text-gray-900 uppercase transition hover:bg-sky-400 rounded-t-lg">
+                                {{ $allBlog->author->name }}
+                            </a>
+                        </div>
+
+
+                        {{-- <div
+                            class="absolute -rotate-90 top-6 group-hover:!-top-5 !left-6 -z-10 transition-all duration-300 ease-in-out flex flex-col">
+                            @foreach ($allBlog->genres as $genre)
+                                @php
+                                    $topValue = '-top-' . $loop->iteration * 5; // -top-5, -top-10, -top-15
+                                    $colors = [
+                                        'bg-sky-300',
+                                        'bg-pink-300',
+                                        'bg-yellow-300',
+                                        'bg-green-300',
+                                        'bg-purple-300',
+                                    ];
+                                    $hoverColors = [
+                                        'hover:bg-sky-400',
+                                        'hover:bg-pink-400',
+                                        'hover:bg-yellow-400',
+                                        'hover:bg-green-400',
+                                        'hover:bg-purple-400',
+                                    ];
+                                    $bgClass = $colors[($loop->iteration - 1) % count($colors)];
+                                    $hoverClass = $hoverColors[($loop->iteration - 1) % count($hoverColors)];
+                                @endphp
+
+                                <a href="/blogs?genre={{ $genre->slug }}"
+                                    class="{{ $topValue }} {{ $bgClass }} {{ $hoverClass }} px-2 py-1 text-xs font-bold text-gray-900 uppercase transition rounded-r-lg mb-1 text-end">
+                                    {{ $genre->nama }}
+                                </a>
+                            @endforeach
+                        </div> --}}
+                    </article>
+                @endforeach
             </div>
+
+            <div id="pagination">
+                {{ $allBlogs->links() }}
+            </div>
+
         </div>
-    </article> --}}
-
-
-    <table id="search-table">
-        <thead>
-            <tr>
-                <th>
-                    <span class="flex items-center">
-                        Company Name
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Ticker
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Stock Price
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Market Capitalization
-                    </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple Inc.</td>
-                <td>AAPL</td>
-                <td>$192.58</td>
-                <td>$3.04T</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Microsoft Corporation</td>
-                <td>MSFT</td>
-                <td>$340.54</td>
-                <td>$2.56T</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Alphabet Inc.</td>
-                <td>GOOGL</td>
-                <td>$134.12</td>
-                <td>$1.72T</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Amazon.com Inc.</td>
-                <td>AMZN</td>
-                <td>$138.01</td>
-                <td>$1.42T</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">NVIDIA Corporation</td>
-                <td>NVDA</td>
-                <td>$466.19</td>
-                <td>$1.16T</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Tesla Inc.</td>
-                <td>TSLA</td>
-                <td>$255.98</td>
-                <td>$811.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Meta Platforms Inc.</td>
-                <td>META</td>
-                <td>$311.71</td>
-                <td>$816.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Berkshire Hathaway Inc.</td>
-                <td>BRK.B</td>
-                <td>$354.08</td>
-                <td>$783.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">TSMC</td>
-                <td>TSM</td>
-                <td>$103.51</td>
-                <td>$538.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">UnitedHealth Group Incorporated
-                </td>
-                <td>UNH</td>
-                <td>$501.96</td>
-                <td>$466.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Johnson & Johnson</td>
-                <td>JNJ</td>
-                <td>$172.85</td>
-                <td>$452.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">JPMorgan Chase & Co.</td>
-                <td>JPM</td>
-                <td>$150.23</td>
-                <td>$431.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Visa Inc.</td>
-                <td>V</td>
-                <td>$246.39</td>
-                <td>$519.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Eli Lilly and Company</td>
-                <td>LLY</td>
-                <td>$582.97</td>
-                <td>$552.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Walmart Inc.</td>
-                <td>WMT</td>
-                <td>$159.67</td>
-                <td>$429.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Samsung Electronics Co., Ltd.
-                </td>
-                <td>005930.KS</td>
-                <td>$70.22</td>
-                <td>$429.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Procter & Gamble Co.</td>
-                <td>PG</td>
-                <td>$156.47</td>
-                <td>$366.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Nestlé S.A.</td>
-                <td>NESN.SW</td>
-                <td>$120.51</td>
-                <td>$338.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Roche Holding AG</td>
-                <td>ROG.SW</td>
-                <td>$296.00</td>
-                <td>$317.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Chevron Corporation</td>
-                <td>CVX</td>
-                <td>$160.92</td>
-                <td>$310.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">LVMH Moët Hennessy Louis Vuitton
-                </td>
-                <td>MC.PA</td>
-                <td>$956.60</td>
-                <td>$478.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Pfizer Inc.</td>
-                <td>PFE</td>
-                <td>$35.95</td>
-                <td>$200.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Novo Nordisk A/S</td>
-                <td>NVO</td>
-                <td>$189.15</td>
-                <td>$443.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">PepsiCo, Inc.</td>
-                <td>PEP</td>
-                <td>$182.56</td>
-                <td>$311.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">ASML Holding N.V.</td>
-                <td>ASML</td>
-                <td>$665.72</td>
-                <td>$273.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">The Coca-Cola Company</td>
-                <td>KO</td>
-                <td>$61.37</td>
-                <td>$265.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Oracle Corporation</td>
-                <td>ORCL</td>
-                <td>$118.36</td>
-                <td>$319.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Merck & Co., Inc.</td>
-                <td>MRK</td>
-                <td>$109.12</td>
-                <td>$276.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Broadcom Inc.</td>
-                <td>AVGO</td>
-                <td>$861.80</td>
-                <td>$356.00B</td>
-            </tr>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Mastercard Incorporated</td>
-                <td>MA</td>
-                <td>$421.44</td>
-                <td>$396.00B</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-    <script>
-        if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
-            const dataTable = new simpleDatatables.DataTable("#search-table", {
-                searchable: true,
-                sortable: false
-            });
-        }
-    </script>
+    </section>
 </x-layout>

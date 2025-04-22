@@ -3,6 +3,7 @@
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\TokoKamiController;
@@ -39,8 +40,8 @@ Route::get('/genres', function () {
     return view('genres');
 });
 
-Route::get('/blogs', function () {
-    return view('blogs');
-});
+Route::get('/blogs', [BlogsController::class, 'index']);
+
+Route::get('/blogs/search', [BlogsController::class, 'search']);
 
 // $allBooks = Book::limit(40)->get;

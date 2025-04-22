@@ -56,11 +56,17 @@
                                         @foreach ($allGenres as $allGenre)
                                             <li class="genre-item">
                                                 <a href="/books?genre={{ $allGenre->slug }}"
-                                                    class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                    <p
-                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">
-                                                        {{ $allGenre->nama }}
-                                                    </p>
+                                                    class="flex items-center group p-2 pr-0 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <div class="inline-flex justify-evenly w-full">
+                                                        <p
+                                                            class="ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300 group-hover:underline w-[140px]">
+                                                            {{ $allGenre->nama }}
+                                                        </p>
+                                                        <p
+                                                            class="text-xs font-normal text-slate-700 w-auto group-hover:scale-110 duration-300 transition ease-in-out">
+                                                            ({{ $allGenre->books->count() }} Books)
+                                                        </p>
+                                                    </div>
                                                 </a>
                                             </li>
                                         @endforeach
@@ -76,10 +82,14 @@
                                         @foreach ($allAuthors as $allAuthor)
                                             <li class="author-item">
                                                 <a href="/books?author={{ $allAuthor->username }}"
-                                                    class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    class="flex items-center p-2 pr-0 group rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                                                     <p
-                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">
+                                                        class="ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300 group-hover:underline w-[160px]">
                                                         {{ $allAuthor->name }}
+                                                    </p>
+                                                    <p
+                                                        class="text-xs font-normal text-slate-700 w-auto group-hover:scale-110 duration-300 transition ease-in-out">
+                                                        ({{ $allAuthor->books->count() }} Books)
                                                     </p>
                                                 </a>
                                             </li>
@@ -123,8 +133,8 @@
                         Sort
                         <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
                     <div id="dropdownSort1"
@@ -326,29 +336,5 @@
                 </button>
             </div>
         </div>
-
-        <!-- Filter modal -->
-        {{-- <form action="#" method="get" id="filterModal" tabindex="-1" aria-hidden="true"
-            class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
-            <div class="relative h-full w-full max-w-xl md:h-auto">
-                <!-- Modal content -->
-                <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
-                    <!-- Modal header -->
-                    <div class="flex items-start justify-between rounded-t p-4 md:p-5">
-                        <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">Filters</h3>
-                        <button type="button"
-                            class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="filterModal">
-                            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form> --}}
     </section>
 </x-layout>

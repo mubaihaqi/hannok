@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 $blog->genres()->attach($genres->random(3)->pluck('id'));
             });
 
-        Book::factory(500)
+        Book::factory(5000)
             ->recycle(Author::all()->random(50))
             ->create([
                 'genre_id' => fn() => $genres->random()->id,
