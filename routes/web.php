@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\PromoController;
+use App\Http\Controllers\GenresController;
 use App\Http\Controllers\TokoKamiController;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -36,9 +37,9 @@ Route::get('/authors', function () {
     return view('authors');
 });
 
-Route::get('/genres', function () {
-    return view('genres');
-});
+Route::get('/genres', [GenresController::class, 'index']);
+
+Route::get('/genres/search', [GenresController::class, 'search']);
 
 Route::get('/blogs', [BlogsController::class, 'index']);
 
