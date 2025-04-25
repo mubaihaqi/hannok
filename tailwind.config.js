@@ -11,6 +11,28 @@ export default {
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
     ],
+    safelist: [
+        "bg-orange-500",
+        "bg-purple-700",
+        "bg-blue-500",
+        "bg-yellow-400",
+        "bg-pink-500",
+        "bg-red-600",
+        "bg-green-500",
+        "bg-red-900",
+        "bg-red-800",
+        "bg-orange-600",
+        "bg-yellow-300",
+        "bg-orange-700",
+        "bg-blue-900",
+        "bg-amber-900",
+        "bg-green-200",
+        "bg-gray-300",
+        "bg-red-400",
+        "bg-slate-800",
+        "bg-indigo-900",
+        "bg-orange-800",
+    ],
     theme: {
         extend: {
             colors: {
@@ -66,5 +88,9 @@ export default {
             },
         },
     },
-    plugins: [require("tailwindcss-textshadow"), require("flowbite/plugin")],
+    plugins: [
+        require("tailwindcss-textshadow"),
+        require("flowbite/plugin"),
+        require("flowbite-typography"),
+    ],
 };

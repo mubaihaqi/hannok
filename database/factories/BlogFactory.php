@@ -23,7 +23,7 @@ class BlogFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title) . '-' . Str::random(5),
-            'body' => fake()->paragraphs(5, true),
+            'body' => $this->faker->realText(5000), // Generate 5000 karakter
             'author_id' => Author::factory(), // Bisa di-recycle juga
             'img' => 'images/' . $this->faker->image('public/images', 320, 320, 'genshin impact', false),
         ];

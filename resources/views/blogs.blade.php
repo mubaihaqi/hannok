@@ -77,8 +77,11 @@
                                                 <a href="/blogs?genre={{ $allGenre->slug }}"
                                                     class="flex items-center group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                                                     <div class="inline-flex justify-evenly w-full">
+                                                        <div
+                                                            class="text-xs font-bold text-gray-900 uppercase transition rounded-full mb-1 text-end {{ $allGenre->color }} w-[14px] h-[14px] overflow-hidden shadow-lg flex items-center">
+                                                        </div>
                                                         <p
-                                                            class="ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300 group-hover:underline w-[160px]">
+                                                            class="ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300 group-hover:underline w-[140px]">
                                                             {{ $allGenre->nama }}
                                                         </p>
                                                         <p
@@ -204,7 +207,7 @@
                 @foreach ($allBlogs as $allBlog)
                     <article
                         class="relative h-[260px] group flex bg-white hover:shadow-xl hover:shadow-sky-100 dark:bg-gray-900 dark:shadow-gray-800/25 border-sky-200 border-2 border-dotted hover:scale-105 transition-all duration-400 ease-in-out">
-                        <div class="rotate-180 p-2 [writing-mode:_vertical-lr] bg-white-100">
+                        <div class="rotate-180 p-2 [writing-mode:_vertical-lr] bg-white-100 group">
                             <time datetime="{{ $allBlog->created_at->format('Y-m-d') }}"
                                 class="flex items-center justify-between gap-4 text-xs font-bold text-gray-900 uppercase dark:text-white">
                                 <span>{{ $allBlog->created_at->format('d-m-Y') }}</span>
@@ -252,35 +255,14 @@
                         </div>
 
 
-                        {{-- <div
-                            class="absolute -rotate-90 top-6 group-hover:!-top-5 !left-6 -z-10 transition-all duration-300 ease-in-out flex flex-col">
+                        <div
+                            class="absolute top-0 group-hover:-top-4 !left-[182px] -z-10 hover:z-10 transition-all duration-300 ease-in-out inline-flex gap-1">
                             @foreach ($allBlog->genres as $genre)
-                                @php
-                                    $topValue = '-top-' . $loop->iteration * 5; // -top-5, -top-10, -top-15
-                                    $colors = [
-                                        'bg-sky-300',
-                                        'bg-pink-300',
-                                        'bg-yellow-300',
-                                        'bg-green-300',
-                                        'bg-purple-300',
-                                    ];
-                                    $hoverColors = [
-                                        'hover:bg-sky-400',
-                                        'hover:bg-pink-400',
-                                        'hover:bg-yellow-400',
-                                        'hover:bg-green-400',
-                                        'hover:bg-purple-400',
-                                    ];
-                                    $bgClass = $colors[($loop->iteration - 1) % count($colors)];
-                                    $hoverClass = $hoverColors[($loop->iteration - 1) % count($hoverColors)];
-                                @endphp
-
                                 <a href="/blogs?genre={{ $genre->slug }}"
-                                    class="{{ $topValue }} {{ $bgClass }} {{ $hoverClass }} px-2 py-1 text-xs font-bold text-gray-900 uppercase transition rounded-r-lg mb-1 text-end">
-                                    {{ $genre->nama }}
+                                    class="text-xs font-bold text-gray-900 uppercase transition rounded-full mb-1 text-end {{ $genre->color }} w-[14px] h-[14px] overflow-hidden shadow-lg">
                                 </a>
                             @endforeach
-                        </div> --}}
+                        </div>
                     </article>
                 @endforeach
             </div>

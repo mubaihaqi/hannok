@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Genre;
 use App\Models\Promo;
 use App\Models\Author;
+use App\Models\Bahasa;
 use App\Models\TokoKami;
 use Illuminate\Database\Seeder;
 
@@ -19,11 +20,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([GenreSeeder::class, AuthorSeeder::class]);
+        $this->call([GenreSeeder::class, AuthorSeeder::class, BahasaSeeder::class]);
 
         $genres = Genre::all();
+        $authors = Author::all();
+        $bahasas = Bahasa::all();
 
-        Blog::factory(100)
+        $authors->each(function ($author) use ($bahasas) {
+            $author->bahasas()->attach($bahasas->random(rand(2, 3))->pluck('id'));
+        });
+
+        Blog::factory(1000)
             ->recycle(Author::all()->random(50))
             ->create()
             ->each(function ($blog) use ($genres) {

@@ -17,6 +17,7 @@
     "dependencies": {
         "alpinejs": "^3.14.9",
         "flowbite": "^3.1.2",
+        "flowbite-typography": "^1.0.5",
         "tailwindcss-textshadow": "^2.1.3"
     }
 }

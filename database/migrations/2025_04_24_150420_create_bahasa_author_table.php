@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('bahasa_author', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->mediumText('body');
-            $table->string('img')->nullable();
+            $table->foreignId('bahasa_id')->constrained(
+                table: 'bahasas',
+                indexName: 'bahasa_author_bahasa_id'
+            )->onDelete('cascade');
             $table->foreignId('author_id')->constrained(
                 table: 'authors',
-                indexName: 'blogs_author_id'
-            );
+                indexName: 'bahasa_author_author_id'
+            )->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('bahasa_author');
     }
 };

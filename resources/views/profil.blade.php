@@ -1,13 +1,17 @@
 <x-layout>
-    <div x-data="{ open: false }" class="relative w-full">
-        <button @click="open = !open" class="bg-blue-500 text-white px-4 py-2 w-full">
-            Toggle Accordion
-        </button>
+    <div class="relative group w-64 h-40">
+        <!-- Child -->
+        <div class="absolute top-20 left-0 right-0 h-20 bg-pink-400 z-0 group-hover:top-0 transition-all duration-500">
+            Muncul dari belakang
+        </div>
 
-        <div x-show="open" class="absolute top-full left-0 w-full bg-white border mt-2 z-10">
-            <p class="p-4">Isi Accordion di sini...</p>
+        <!-- Back Layer (semacam background) -->
+        <div class="absolute inset-0 bg-blue-300 z-10 pointer-events-none"></div>
+
+        <!-- Foreground content -->
+        <div class="relative z-20 p-4 text-white">
+            Ini isi parent
         </div>
     </div>
-
 
 </x-layout>

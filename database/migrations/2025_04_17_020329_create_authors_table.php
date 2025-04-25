@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
             $table->string('username')->unique();
+            $table->string('email')->unique();
             $table->string('img')->nullable();
+            $table->text('bio');
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('education')->nullable();
+            $table->text('moto')->nullable();
+            $table->string('specialization')->nullable();
             $table->timestamps();
         });
     }
