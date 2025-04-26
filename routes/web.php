@@ -32,7 +32,9 @@ Route::get('/profil', function () {
 
 Route::get('/books', [BooksController::class, 'index']);
 
-Route::get('/authors', [AuthorsController::class, 'index']);
+Route::get('/book/{book:slug}', function (Book $book) {
+    return view('book', ['book' => $book]);
+});
 
 Route::get('/genres', [GenresController::class, 'index']);
 
@@ -42,16 +44,17 @@ Route::get('/blogs', [BlogsController::class, 'index']);
 
 Route::get('/blogs/search', [BlogsController::class, 'search']);
 
-Route::get('/book/{book:slug}', function (Book $book) {
-    return view('book', ['book' => $book]);
-});
-
 Route::get('/blog/{blog:slug}', function (Blog $blog) {
     return view('blogper', ['blog' => $blog]);
 });
 
+Route::get('/authors', [AuthorsController::class, 'index']);
+
+Route::get('/authors/search', [AuthorsController::class, 'search']);
+
 Route::get('/author/{author:username}', function (Author $author) {
     return view('author', ['author' => $author]);
 });
+
 
 // $allBooks = Book::limit(40)->get;

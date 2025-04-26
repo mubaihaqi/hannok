@@ -16,7 +16,7 @@ class HomeController extends Controller
         $mostPopular = Author::withCount(['books', 'blogs'])
             ->orderByDesc('books_count')
             ->orderByDesc('blogs_count')
-            ->first();
+            ->first() ?? new Author();  // Fallback ke Author kosong jika tidak ada data
 
         $newVoices = Author::with(['books', 'blogs'])
             ->whereHas('books', fn($q) => $q->where('created_at', '>=', now()->subMonth()))
@@ -24,11 +24,11 @@ class HomeController extends Controller
             ->latest()
             ->first();
 
-        $editorsPick = Author::where('username', 'keziaamara')->first();
+        $editorsPick = Author::where('username', 'keznath')->first() ?? new Author();
 
         $trendingNow = Author::withCount(['blogs', 'books'])
             ->orderByDesc('blogs_count')
-            ->first();
+            ->first() ?? new Author();  // Fallback ke Author kosong jika tidak ada data
 
         // BUKU TERBARU
         $latestBooks = Book::latest()->take(5)->get();

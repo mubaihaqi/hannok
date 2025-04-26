@@ -1,4 +1,4 @@
-<footer class="p-4 bg-white lg:p-8 dark:bg-gray-800">
+<footer class="p-4 bg-white dark:bg-gray-800">
     <div class="mx-auto max-w-screen-xl text-center">
         <a href="/"
             class="text-2xl font-bold tracking-tighter text-transparent bg-gradient-to-r from-sky-500 to-teal-500 bg-clip-text hover:text-sky-700">

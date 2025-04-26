@@ -92,5 +92,6 @@ export default {
         require("tailwindcss-textshadow"),
         require("flowbite/plugin"),
         require("flowbite-typography"),
+        require("tailwind-scrollbar-hide"),
     ],
 };

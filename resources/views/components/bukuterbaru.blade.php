@@ -75,7 +75,7 @@
                     </div>
 
                     <a href="/book/{{ $latestBook['slug'] }}"
-                        class="block text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white h-[70px]">{{ $latestBook->title }}</a>
+                        class="block text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white h-[70px] line-clamp-3">{{ $latestBook->title }}</a>
 
                     <div class="pl-1 mt-2 flex items-center">
                         <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

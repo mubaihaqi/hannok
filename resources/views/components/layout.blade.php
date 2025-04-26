@@ -16,13 +16,17 @@
     <div class="min-h-full">
         <x-navbar></x-navbar>
 
-        <main>
+        <main class="pt-16">
 
             <!-- Your content -->
             {{ $slot }}
         </main>
 
-        <x-secondary-footer></x-secondary-footer>
+        @isset($footer)
+            {{ $footer }}
+        @else
+            <x-secondary-footer></x-secondary-footer>
+        @endisset
         {{-- <x-footer></x-footer> --}}
     </div>
 </body>

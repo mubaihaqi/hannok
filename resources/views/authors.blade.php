@@ -15,7 +15,7 @@
 
                 {{-- Buttons --}}
                 <div class="relative flex items-center space-x-4">
-                    <form class="w-64" action="/blogs/search" method="GET">
+                    <form class="w-64" action="/authors/search" method="GET">
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div class="relative">
