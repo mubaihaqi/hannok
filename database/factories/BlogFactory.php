@@ -19,13 +19,13 @@ class BlogFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->sentence(6);
+        $title = $this->faker->sentence(5); // 5 kata, lebih pendek dan realistis
         return [
             'title' => $title,
             'slug' => Str::slug($title) . '-' . Str::random(5),
-            'body' => $this->faker->realText(5000), // Generate 5000 karakter
-            'author_id' => Author::factory(), // Bisa di-recycle juga
-            'img' => 'images/' . $this->faker->image('public/images', 320, 320, 'genshin impact', false),
+            'body' => $this->faker->realText(60000), // 10 paragraf, digabung
+            'author_id' => Author::factory(),
+            // 'img' => 'images/' . $this->faker->image('public/images', 640, 480, 'people', false),
         ];
     }
 }

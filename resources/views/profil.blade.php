@@ -1,17 +1,18 @@
 <x-layout>
-    <div class="relative group w-64 h-40">
-        <!-- Child -->
-        <div class="absolute top-20 left-0 right-0 h-20 bg-pink-400 z-0 group-hover:top-0 transition-all duration-500">
-            Muncul dari belakang
+    <div class="mt-4 inline-flex w-full relative">
+        <div class="mt-10"></div>
+        <div class="absolute top-full left-0 w-[902px] bg-white shadow-lg rounded-lg mt-2 z-50"
+            style="max-height: 300px;
+    overflow-y: auto;">
+            <div class="p-4">
+                <h3 class="font-semibold text-lg mb-2">Authors</h3>
+                <ul>
+
+
+                </ul>
+            </div>
         </div>
 
-        <!-- Back Layer (semacam background) -->
-        <div class="absolute inset-0 bg-blue-300 z-10 pointer-events-none"></div>
 
-        <!-- Foreground content -->
-        <div class="relative z-20 p-4 text-white">
-            Ini isi parent
-        </div>
     </div>
-
 </x-layout>

@@ -53,7 +53,19 @@
                                             class="font-semibold w-auto group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-600 group-hover:to-teal-600 group-hover:underline group-hover:bg-clip-text">{{ $author->name }}</span>
                                     </p>
                                     <p>Email : <span
-                                            class="font-semibold w-auto group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-600 group-hover:to-teal-600 group-hover:underline group-hover:bg-clip-text">{{ $author->email }}</span>
+                                            class="font-semibold w-auto group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-600 group-hover:to-teal-600 group-hover:underline group-hover:bg-clip-text   ">{{ $author->email }}</span>
+                                    </p>
+                                    <p>Books : <span
+                                            class="font-semibold w-auto group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-600 group-hover:to-teal-600 group-hover:underline group-hover:bg-clip-text"><a
+                                                href="/books?author={{ $author->username }}"
+                                                class="hover:underline">{{ $author->books->count() }}
+                                                Books </a></span>
+                                    </p>
+                                    <p>Blogs : <span
+                                            class="font-semibold w-auto group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-600 group-hover:to-teal-600 group-hover:underline group-hover:bg-clip-text"><a
+                                                href="/blogs?author={{ $author->username }}"
+                                                class="hover:underline">{{ $author->blogs->count() }}
+                                                Blogs </a></span>
                                     </p>
                                 </div>
                             </li>
@@ -141,7 +153,7 @@
 
                             {{-- Socmed Section --}}
                             <div
-                                class="border-t border-gray-200 inline-flex justify-between items-center w-full gap-2 px-10 pt-4 mt-2">
+                                class="border-t border-gray-200 inline-flex justify-between items-center w-full gap-1 px-16 pt-4 mt-2">
                                 <a href="{{ $author->linkedin }}"
                                     class="bg-blue-600 w-8 aspect-[1/1] items-center flex justify-center rounded-full shadow-md border-2 ">
                                     <svg class="w-6 h-6 text-blue-50 dark:text-white" xmlns="http://www.w3.org/2000/svg"

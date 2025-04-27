@@ -59,5 +59,28 @@ class HomeController extends Controller
             'latestBlogs'
         ));
     }
+
+    public function searchAjax(Request $request)
+    {
+        $query = $request->input('q');
+
+        $books = Book::with('author') // Pastikan relasi author dimuat
+            ->where('title', 'like', "%{$query}%")
+            ->get();
+
+        $authors = Author::where('name', 'like', "%{$query}%")
+            ->orWhere('username', 'like', "%{$query}%")
+            ->get();
+
+        $blogs = Blog::where('title', 'like', "%{$query}%")->get();
+        $genres = Genre::where('nama', 'like', "%{$query}%")->get();
+
+        return response()->json([
+            'books' => $books,
+            'authors' => $authors,
+            'blogs' => $blogs,
+            'genres' => $genres,
+        ]);
+    }
 }
 // Alya Celestine Amara

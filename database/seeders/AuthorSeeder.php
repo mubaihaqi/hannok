@@ -649,7 +649,7 @@ class AuthorSeeder extends Seeder
             'username' => 'baihaqiyo',
             'email' => 'justnuqthoh@gmail.com',
             'img' => asset('images/46.png'),
-            'bio' => 'Seorang penjelajah dunia digital yang hobi ngopi sambil ngoding tengah malam. Pernah nyasar ke dunia desain grafis tapi akhirnya jatuh cinta sama baris-baris kode yang penuh tanda kurung dan titik koma. Punya mimpi sederhana: bisa bikin aplikasi yang dipakai jutaan orang—meski sekarang baru bisa bikin to-do list app yang lupa dikasih fitur hapus. Di luar dunia layar dan keyboard, dia suka nyari sunset, baca novel misteri, dan kadang nulis puisi yang nggak pernah diposting. Hidupnya diatur pakai sticky notes, meskipun kadang dia lupa di mana naro sticky notes-nya.',
+            'bio' => 'Seorang penjelajah dunia digital yang hobi ngopi sambil ngoding tengah malam. Pernah nyasar ke dunia desain grafis tapi akhirnya jatuh cinta sama baris-baris kode yang penuh tanda kurung dan titik koma.',
             'linkedin' => 'https://www.linkedin.com/in/umarbaihaqi',
             'instagram' => 'https://www.instagram.com/haq_xgi',
             'twitter' => 'https://twitter.com/skyrthym',
@@ -716,3 +716,4 @@ class AuthorSeeder extends Seeder
         ]);
     }
 }
+// Seorang penjelajah dunia digital yang hobi ngopi sambil ngoding tengah malam. Pernah nyasar ke dunia desain grafis tapi akhirnya jatuh cinta sama baris-baris kode yang penuh tanda kurung dan titik koma. Punya mimpi sederhana: bisa bikin aplikasi yang dipakai jutaan orang—meski sekarang baru bisa bikin to-do list app yang lupa dikasih fitur hapus. Di luar dunia layar dan keyboard, dia suka nyari sunset, baca novel misteri, dan kadang nulis puisi yang nggak pernah diposting. Hidupnya diatur pakai sticky notes, meskipun kadang dia lupa di mana naro sticky notes-nya.

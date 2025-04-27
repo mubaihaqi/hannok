@@ -14,6 +14,8 @@ use App\Http\Controllers\TokoKamiController;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/search/ajax', [HomeController::class, 'searchAjax'])->name('search.ajax');
+
 Route::get('/promo', [PromoController::class, 'index']);
 
 Route::get('/toko', [TokoKamiController::class, 'index']);

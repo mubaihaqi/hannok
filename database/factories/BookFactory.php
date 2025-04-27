@@ -19,18 +19,17 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->sentence(6);
+        $title = $this->faker->catchPhrase(); // CatchPhrase lebih kayak nama produk/buku
         return [
             'title' => $title,
             'slug' => Str::slug($title) . '-' . Str::random(5),
-            'description' => fake()->paragraphs(3, true),
-            'preview' => fake()->text(150),
-
-            'harga_buku' => fake()->numberBetween(30000, 150000),
-            'rating' => fake()->numberBetween(1, 5),
-            'author_id' => Author::factory(), // Bisa di-recycle nanti
-            'genre_id' => Genre::factory(),   // Bisa override nanti
-            'img' => 'images/' . $this->faker->image('public/images', 320, 320, 'genshin impact', false),
+            'description' => $this->faker->paragraph(5), // 5 kalimat nyambung
+            'preview' => $this->faker->text(200), // preview pendek
+            'harga_buku' => $this->faker->numberBetween(45000, 250000), // harga lebih masuk akal
+            'rating' => $this->faker->randomFloat(1, 1, 5), // rating bisa koma misal 4.3
+            'author_id' => Author::factory(),
+            'genre_id' => Genre::factory(),
+            // 'img' => 'images/' . $this->faker->image('public/images', 320, 320, 'books', false),
         ];
     }
 }
