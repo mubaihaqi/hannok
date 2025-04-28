@@ -29,6 +29,36 @@
         @endisset
         {{-- <x-footer></x-footer> --}}
     </div>
+
+    <script>
+        function addToCart(bookId) {
+            fetch(`/cart/add/${bookId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(response => {
+                    if (response.status === 401) {
+                        throw new Error('Kamu harus login dulu untuk menambahkan ke keranjang.');
+                    }
+                    if (!response.ok) {
+                        throw new Error('Gagal tambah ke cart.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Buku berhasil ditambahkan ke keranjang!');
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }
+    </script>
+
 </body>
 
 </html>

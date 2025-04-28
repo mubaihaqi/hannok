@@ -31,11 +31,19 @@
                     </a>
                 </div>
                 <div class="pt-2">
-                    <div class="mb-2 flex items-center justify-between gap-4">
-                        <a href="/books?author={{ $latestBook->author->username }}">
-                            <span
-                                class="rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                                {{ $latestBook->author->name }}</span></a>
+                    <div class="mb-2 flex items-center justify-between gap-1">
+                        <div class="inline-flex items-center justify-start gap-1">
+                            <a href="/books?author={{ $latestBook->author->username }}">
+                                <span
+                                    class="rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                                    {{ $latestBook->author->name }}</span>
+                            </a>
+
+                            <p
+                                class="rounded bg-primary-100 px-2.5 py-[1px] text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                                {{ $latestBook->stock }}
+                            </p>
+                        </div>
 
                         <div class="flex items-center justify-end gap-1">
                             <button type="button" data-tooltip-target="tooltip-quick-look"

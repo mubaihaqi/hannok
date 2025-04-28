@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([GenreSeeder::class, AuthorSeeder::class, BahasaSeeder::class]);
+        $this->call([GenreSeeder::class, AuthorSeeder::class, BahasaSeeder::class, UserSeeder::class]);
 
         $genres = Genre::all();
         $authors = Author::all();
@@ -30,14 +30,14 @@ class DatabaseSeeder extends Seeder
             $author->bahasas()->attach($bahasas->random(rand(2, 3))->pluck('id'));
         });
 
-        Blog::factory(1000)
+        Blog::factory(100)
             ->recycle(Author::all()->random(50))
             ->create()
             ->each(function ($blog) use ($genres) {
                 $blog->genres()->attach($genres->random(3)->pluck('id'));
             });
 
-        Book::factory(5000)
+        Book::factory(500)
             ->recycle(Author::all()->random(50))
             ->create([
                 'genre_id' => fn() => $genres->random()->id,

@@ -30,6 +30,7 @@ class BookFactory extends Factory
             'author_id' => Author::factory(),
             'genre_id' => Genre::factory(),
             // 'img' => 'images/' . $this->faker->image('public/images', 320, 320, 'books', false),
+            'stock' => $this->faker->numberBetween(0, 100), // <-- Ini tambahin
         ];
     }
 }

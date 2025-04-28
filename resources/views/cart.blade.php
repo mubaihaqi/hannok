@@ -1,7 +1,17 @@
 <x-layout>
-    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
+            <!-- Heading & Filters -->
+            <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
+                <x-navigate>
+                    <x-slot:title>{{ $title = 'My Cart' }}</x-slot:title>
+                    <x-slot:href>{{ $href = '/cart' }}</x-slot:href>
+                    <x-slot:href2>{{ $href = '' }}</x-slot:href2>
+                    <x-slot:title2>{{ $title2 = '' }}</x-slot:title2>
+                    <x-slot:gaketok>{{ $gaketok = '' }}</x-slot:gaketok>
+                    <x-slot:gaketok2>{{ $gaketok2 = 'hidden' }}</x-slot:gaketok2>
+                </x-navigate>
+            </div>
 
             <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
@@ -51,7 +61,8 @@
                                 <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                                     <a href="#"
                                         class="text-base font-medium text-gray-900 hover:underline dark:text-white">PC
-                                        system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K, 8GB,
+                                        system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K,
+                                        8GB,
                                         SSD 256GB, 10-core GPU, Keyboard layout INT</a>
 
                                     <div class="flex items-center gap-4">
@@ -389,7 +400,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hidden xl:mt-8 xl:block">
+
+                    {{-- <div class="hidden xl:mt-8 xl:block">
                         <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
                         <div class="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
                             <div
@@ -407,14 +419,16 @@
                                         class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">iMac
                                         27”</a>
                                     <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This
-                                        generation has some improvements, including a longer continuous battery life.
+                                        generation has some improvements, including a longer continuous battery
+                                        life.
                                     </p>
                                 </div>
                                 <div>
                                     <p class="text-lg font-bold text-gray-900 dark:text-white">
                                         <span class="line-through"> $399,99 </span>
                                     </p>
-                                    <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$299</p>
+                                    <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$299
+                                    </p>
                                 </div>
                                 <div class="mt-6 flex items-center gap-2.5">
                                     <button data-tooltip-target="favourites-tooltip-1" type="button"
@@ -459,14 +473,16 @@
                                         class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Playstation
                                         5</a>
                                     <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This
-                                        generation has some improvements, including a longer continuous battery life.
+                                        generation has some improvements, including a longer continuous battery
+                                        life.
                                     </p>
                                 </div>
                                 <div>
                                     <p class="text-lg font-bold text-gray-900 dark:text-white">
                                         <span class="line-through"> $799,99 </span>
                                     </p>
-                                    <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$499</p>
+                                    <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$499
+                                    </p>
                                 </div>
                                 <div class="mt-6 flex items-center gap-2.5">
                                     <button data-tooltip-target="favourites-tooltip-2" type="button"
@@ -511,14 +527,16 @@
                                         class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Apple
                                         Watch Series 8</a>
                                     <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This
-                                        generation has some improvements, including a longer continuous battery life.
+                                        generation has some improvements, including a longer continuous battery
+                                        life.
                                     </p>
                                 </div>
                                 <div>
                                     <p class="text-lg font-bold text-gray-900 dark:text-white">
                                         <span class="line-through"> $1799,99 </span>
                                     </p>
-                                    <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$1199</p>
+                                    <p class="text-lg font-bold leading-tight text-red-600 dark:text-red-500">$1199
+                                    </p>
                                 </div>
                                 <div class="mt-6 flex items-center gap-2.5">
                                     <button data-tooltip-target="favourites-tooltip-3" type="button"
@@ -550,7 +568,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
@@ -561,7 +579,8 @@
                         <div class="space-y-4">
                             <div class="space-y-2">
                                 <dl class="flex items-center justify-between gap-4">
-                                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Original price
+                                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Original
+                                        price
                                     </dt>
                                     <dd class="text-base font-medium text-gray-900 dark:text-white">$7,592.00</dd>
                                 </dl>
@@ -613,7 +632,8 @@
                         <form class="space-y-4">
                             <div>
                                 <label for="voucher"
-                                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you have a
+                                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you
+                                    have a
                                     voucher or gift card? </label>
                                 <input type="text" id="voucher"
                                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"

@@ -72,7 +72,10 @@ class HomeController extends Controller
             ->orWhere('username', 'like', "%{$query}%")
             ->get();
 
-        $blogs = Blog::where('title', 'like', "%{$query}%")->get();
+        $blogs = Blog::with('author')
+            ->where('title', 'like', "%{$query}%")
+            ->get();
+
         $genres = Genre::where('nama', 'like', "%{$query}%")->get();
 
         return response()->json([

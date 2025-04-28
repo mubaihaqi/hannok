@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokoKamiController;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -22,14 +24,6 @@ Route::get('/toko', [TokoKamiController::class, 'index']);
 
 Route::get('/contact', function () {
     return view('contact');
-});
-
-Route::get('/cart', function () {
-    return view('cart');
-});
-
-Route::get('/profil', function () {
-    return view('profil');
 });
 
 Route::get('/books', [BooksController::class, 'index']);
@@ -58,5 +52,39 @@ Route::get('/author/{author:username}', function (Author $author) {
     return view('author', ['author' => $author]);
 });
 
+Route::get('/profil', function () {
+    return view('profil');
+})->middleware(['auth', 'verified'])->name('profil');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
+    Route::post('/cart/add/{book}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/update/{cart}', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::post('/cart/remove/{cart}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profil.edit');
+    Route::patch('/profil', [ProfileController::class, 'update'])->name('profil.update');
+    Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profil.destroy');
+});
+
+// // Redirect if not authenticated
+// Route::get('/cart', function () {
+//     return redirect()->route('login')->with('message', 'Please log in to view your cart.');
+// })->name('cart.index')->middleware('guest');
+
+require __DIR__ . '/auth.php';
+
+
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Halaman dashboard (hanya bisa diakses setelah login)
+Route::get('/profil', function () {
+    return view('profil');
+})->middleware(['auth', 'verified'])->name('profil');
 
 // $allBooks = Book::limit(40)->get;

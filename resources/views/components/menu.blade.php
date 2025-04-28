@@ -34,7 +34,7 @@
 
     <!-- Floating Search Results -->
     <div id="search-results"
-        class="absolute top-full left-0 w-[902px] max-h-[300px] bg-white shadow-lg rounded-lg mt-2 hidden z-50 scrollbar-hide overflow-auto backdrop-blur-xl bg-white/80 border border-white/80">
+        class="absolute top-full left-0 w-[902px] max-h-[300px] bg-white shadow-lg rounded-lg mt-2 hidden z-50 scrollbar-hide overflow-auto backdrop-blur-xl bg-sky-100/80 border border-sky-300/80">
         <div class="p-4">
             <p class="text-gray-500">Type to search...</p>
         </div>
@@ -94,32 +94,43 @@
                                     name: 'Unknown Author'
                                 };
                                 resultsHTML += `
-                            <li class="bg-sky-50 rounded-lg mb-1 py-3 px-2 inline-flex justify-between group hover:cursor-pointer">
-                                <a href="/book/${book.slug}" class="text-sky-500 truncate w-3/5">${book.title}</a>
+                            <li class="bg-sky-50 rounded-lg mb-1 py-3 px-2 inline-flex justify-between group hover:cursor-pointer hover:bg-slate-100">
+                                <a href="/book/${book.slug}" class="text-sky-500 truncate w-3/5  group-hover:text-sky-700">${book.title}</a>
                                 <a href="/author/${author.username}" class="text-sky-200 group-hover:text-sky-700 group-hover:underline">${author.name}</a>
                             </li>`;
                             });
                             resultsHTML += '</div></ul>';
                         }
 
-                        if (data.genres.length > 0) {
+                        if (data.blogs.length > 0) {
                             resultsHTML +=
-                                '<h3 class="font-semibold text-lg mt-4 mb-2">Genres</h3><ul>';
-                            data.genres.forEach(genre => {
+                                '<h3 class="font-semibold text-lg mt-4 mb-2">Blogs</h3><ul><div class="grid grid-cols-2 gap-2">';
+                            data.blogs.forEach(blog => {
+                                const author = blog.author || {
+                                    username: 'unknown',
+                                    name: 'Unknown Author'
+                                };
                                 resultsHTML +=
-                                    `<li><a href="/genres?name=${genre.nama}" class="text-sky-500 hover:underline">${genre.nama}</a></li>`;
+                                    `<li class="bg-sky-50 rounded-lg mb-1 py-3 px-2 inline-flex justify-between group hover:cursor-pointer hover:bg-slate-100">
+                                <a href="/blog/${blog.slug}" class="text-sky-500 truncate w-3/5  group-hover:text-sky-700">${blog.title}</a>
+                                <a href="/author/${author.username}" class="text-sky-200 group-hover:text-sky-700 group-hover:underline">${author.name}</a>
+                                </li>`;
                             });
-                            resultsHTML += '</ul>';
+                            resultsHTML += '</div></ul>';
                         }
 
-                        if (data.blogs.length > 0) {
-                            resultsHTML += '<h3 class="font-semibold text-lg mt-4 mb-2">Blogs</h3><ul>';
-                            data.blogs.forEach(blog => {
+                        if (data.genres.length > 0) {
+                            resultsHTML +=
+                                '<h3 class="font-semibold text-lg mt-4 mb-2">Genres</h3><ul><div class="grid grid-cols-2 gap-2">';
+                            data.genres.forEach(genre => {
                                 resultsHTML +=
-                                    `<li><a href="/blog/${blog.slug}" class="text-sky-500 hover:underline">${blog.title}</a></li>`;
+                                    `<li class="bg-sky-50 rounded-lg mb-1 py-3 px-2 inline-flex justify-between group hover:cursor-pointer hover:bg-slate-100">
+                                    <a href="/genres?name=${genre.nama}" class="text-sky-500 group-hover:text-sky-700 group-hover:underline">${genre.nama}</a>
+                                    </li>`;
                             });
-                            resultsHTML += '</ul>';
+                            resultsHTML += '</div></ul>';
                         }
+
 
                         if (!resultsHTML) {
                             resultsHTML = '<p class="text-gray-500">No results found.</p>';

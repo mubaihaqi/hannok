@@ -29,6 +29,7 @@ return new class extends Migration
                 indexName: 'blogs_genre_id'
             );
             $table->timestamps();
+            $table->integer('stock')->default(0);
         });
     }
 

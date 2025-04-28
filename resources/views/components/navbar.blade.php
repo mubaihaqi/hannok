@@ -35,7 +35,7 @@
 
             <div class="flex items-center lg:space-x-2">
                 <a href="/cart" class="flex">
-                    <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button"
+                    <button id="myCartDropdownButton1" type="button"
                         class="inline-flex items-center rounded-lg justify-center p-2 pr-[10px] hover:bg-sky-50 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
                         <span class="sr-only">
                             Cart
@@ -89,9 +89,12 @@
                     </ul>
 
                     <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                        <a href="#" title=""
-                            class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                            Sign Out </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            @method('POST') <!-- atau DELETE -->
+                            <button type="submit"
+                                class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">Logout</button>
+                        </form>
                     </div>
                 </div>
 

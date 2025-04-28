@@ -6,6 +6,7 @@ use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Book extends Model
@@ -21,5 +22,10 @@ class Book extends Model
     public function genre(): BelongsTo
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class); // One book can be in many carts
     }
 }
