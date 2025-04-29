@@ -28,4 +28,9 @@ class Book extends Model
     {
         return $this->hasMany(Cart::class); // One book can be in many carts
     }
+
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(Favorite::class); // One book can be in many favorites
+    }
 }

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 // app/Http/Controllers/CartController.php
 
-use Illuminate\Http\Request;
-use App\Models\Cart;
 use App\Models\Book;
+use App\Models\Cart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -14,18 +15,18 @@ class CartController extends Controller
     // 🛒 Tambah buku ke cart
     public function addToCart(Request $request, $bookId)
     {
-        $user = Auth::user(); // ambil user yg login
+        Log::info('Is AJAX: ' . ($request->ajax() ? 'Yes' : 'No'));
+
+        $user = Auth::user();
 
         $cart = Cart::where('user_id', $user->id)
             ->where('book_id', $bookId)
             ->first();
 
         if ($cart) {
-            // kalau buku udah ada di cart, tambahin quantity 1
             $cart->quantity += 1;
             $cart->save();
         } else {
-            // kalau belum ada, bikin baru
             Cart::create([
                 'user_id' => $user->id,
                 'book_id' => $bookId,
@@ -33,14 +34,18 @@ class CartController extends Controller
             ]);
         }
 
-        // ⬇️ Ini bagian barunya
         if ($request->ajax()) {
             return response()->json([
                 'message' => 'Buku berhasil ditambahkan ke keranjang!'
             ]);
         }
 
-        // Kalau bukan ajax, tetep redirect biasa
+        if (!$request->ajax()) {
+            return response()->json([
+                'message' => 'Buku berhasil ditambahkan ke keranjang!'
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Buku berhasil ditambahkan ke keranjang!');
     }
 
@@ -50,7 +55,8 @@ class CartController extends Controller
         $user = Auth::user();
         $cartItems = Cart::with('book')->where('user_id', $user->id)->get();
 
-        return view('cart.index', compact('cartItems'));
+        // dd($cartItems);
+        return view('cart', compact('cartItems'));
     }
 
     // 🛒 Update quantity di cart
@@ -63,12 +69,34 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Jumlah buku di keranjang berhasil diperbarui!');
     }
 
+    public function update(Request $request, $id)
+    {
+        $cartItem = Cart::findOrFail($id);
+        $cartItem->quantity = $request->input('quantity');
+        $cartItem->save();
+
+        return response()->json(['success' => true]);
+    }
+
     // 🛒 Hapus item dari cart
     public function removeFromCart($cartId)
     {
         $cart = Cart::findOrFail($cartId);
+
+        if ($cart->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $cart->delete();
 
-        return redirect()->back()->with('success', 'Buku berhasil dihapus dari keranjang!');
+        return response()->json(['message' => 'Item berhasil dihapus dari keranjang!']);
     }
+
+    // public function removeFromCart($cartId)
+    // {
+    //     $cart = Cart::findOrFail($cartId);
+    //     $cart->delete();
+
+    //     return redirect()->back()->with('success', 'Buku berhasil dihapus dari keranjang!');
+    // }
 }

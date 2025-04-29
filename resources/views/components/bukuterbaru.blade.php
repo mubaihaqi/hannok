@@ -19,6 +19,7 @@
                 </span>
             </button></a>
     </div>
+
     <div class="flex gap-4">
         {{-- Card Book --}}
         @foreach ($latestBooks as $latestBook)
@@ -39,12 +40,9 @@
                                     {{ $latestBook->author->name }}</span>
                             </a>
 
-                            <p
-                                class="rounded bg-primary-100 px-2.5 py-[1px] text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                                {{ $latestBook->stock }}
-                            </p>
                         </div>
 
+                        {{-- Buttons --}}
                         <div class="flex items-center justify-end gap-1">
                             <button type="button" data-tooltip-target="tooltip-quick-look"
                                 class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -57,34 +55,41 @@
                                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 </svg>
                             </button>
-                            <div id="tooltip-quick-look" role="tooltip"
+                            {{-- <div id="tooltip-quick-look" role="tooltip"
                                 class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
                                 data-popper-placement="top">
                                 Quick look
                                 <div class="tooltip-arrow" data-popper-arrow=""></div>
-                            </div>
+                            </div> --}}
 
-                            <button type="button" data-tooltip-target="tooltip-add-to-favorites"
-                                class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only"> Add to Favorites </span>
-                                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                </svg>
-                            </button>
-                            <div id="tooltip-add-to-favorites" role="tooltip"
+                            {{-- Add to Favorite Button --}}
+                            <form action="{{ route('favorite.add', $latestBook->id) }}" method="POST">
+                                @csrf
+                                <button onclick="addToFavorite({{ $latestBook->id }})" type="button"
+                                    data-tooltip-target="tooltip-add-to-favorites"
+                                    class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    <span class="sr-only"> Add to Favorites </span>
+                                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
+                                    </svg>
+                                </button>
+                            </form>
+                            {{-- <div id="tooltip-add-to-favorites" role="tooltip"
                                 class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
                                 data-popper-placement="top">
                                 Add to favorites
                                 <div class="tooltip-arrow" data-popper-arrow=""></div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
+                    {{-- Title --}}
                     <a href="/book/{{ $latestBook['slug'] }}"
                         class="block text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white h-[70px] line-clamp-3">{{ $latestBook->title }}</a>
 
+                    {{-- Ratings --}}
                     <div class="pl-1 mt-2 flex items-center">
                         <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
@@ -98,7 +103,7 @@
                             reviews</a>
                     </div>
 
-
+                    {{-- Dummy --}}
                     <ul class="mt-2 flex items-center gap-2">
                         <li class="flex items-center gap-1">
                             <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -120,30 +125,40 @@
                         </li>
                     </ul>
 
+                    {{-- Harga --}}
                     <div class="mt-3 flex items-center justify-between">
                         @php
                             $diskon = 0.25;
                             $hargaDiskon = $latestBook->harga_buku * $diskon;
                             $hargaPascaDiskon = $latestBook->harga_buku - $hargaDiskon;
                         @endphp
-                        <div class="inline-flex gap-1 items-center">
-                            <p class="text-xl font-extrabold leading-tight text-gray-900 dark:text-white">
+                        <div class="block gap-1 items-center">
+                            <p
+                                class="text-xl font-extrabold leading-tight text-gray-900 dark:text-white mb-1 tracking-wider group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-600 group-hover:to-teal-600 group-hover:bg-clip-text group-hover:scale-105 transition-all duration-700 ease-in-out">
                                 Rp<span>{{ number_format($hargaPascaDiskon, 0, ',', '.') }}</span></p>
 
-                            <div class="flex flex-col gap-1 justify-start w-auto">
+                            <div class="flex gap-2 justify-start w-auto">
+                                <span class="text-xs font-medium text-red-700 bg-red-300 rounded-md pl-2 pr-1">
+                                    {{ $diskon * 100 }}%
+                                </span>
                                 <p class="font-normal text-xs line-through text-slate-400">
                                     Rp{{ number_format($latestBook->harga_buku, 0, ',', '.') }}</p>
                             </div>
                         </div>
-                        <button type="button"
-                            class="inline-flex items-center rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
-                            </svg>
-                        </button>
+
+                        {{-- Add to Cart Button --}}
+                        <form action="{{ route('cart.add', $latestBook->id) }}" method="POST">
+                            @csrf
+                            <button type="button" onclick="addToCart({{ $latestBook->id }})"
+                                class="inline-flex h-full items-center rounded-lg bg-primary-700 px-6 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                <svg class="h-6 aspect-[1/1]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

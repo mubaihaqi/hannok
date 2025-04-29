@@ -19,7 +19,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $title = $this->faker->catchPhrase(); // CatchPhrase lebih kayak nama produk/buku
+        $title = Str::limit($this->faker->catchPhrase(), 100); // Batas panjang 50 karakter // CatchPhrase lebih kayak nama produk/buku
         return [
             'title' => $title,
             'slug' => Str::slug($title) . '-' . Str::random(5),
@@ -30,7 +30,7 @@ class BookFactory extends Factory
             'author_id' => Author::factory(),
             'genre_id' => Genre::factory(),
             // 'img' => 'images/' . $this->faker->image('public/images', 320, 320, 'books', false),
-            'stock' => $this->faker->numberBetween(0, 100), // <-- Ini tambahin
+            'stock' => $this->faker->numberBetween(5, 1000), // <-- Ini tambahin
         ];
     }
 }

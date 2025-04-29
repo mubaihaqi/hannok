@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokoKamiController;
 
@@ -62,6 +63,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/update/{cart}', [CartController::class, 'updateCart'])->name('cart.update');
     Route::post('/cart/remove/{cart}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
+    Route::get('/favorite', [FavoriteController::class, 'viewFavorite'])->name('favorite.index');
+    Route::post('/favorite/add/{book}', [FavoriteController::class, 'addToFavorite'])->name('favorite.add');
+
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profil.edit');
     Route::patch('/profil', [ProfileController::class, 'update'])->name('profil.update');
     Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profil.destroy');
@@ -72,9 +76,7 @@ Route::middleware('auth')->group(function () {
 //     return redirect()->route('login')->with('message', 'Please log in to view your cart.');
 // })->name('cart.index')->middleware('guest');
 
-require __DIR__ . '/auth.php';
-
-
+// $allBooks = Book::limit(40)->get;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -87,4 +89,6 @@ Route::get('/profil', function () {
     return view('profil');
 })->middleware(['auth', 'verified'])->name('profil');
 
-// $allBooks = Book::limit(40)->get;
+// Route::get('/favorite', [FavoriteController::class, 'index']);
+
+require __DIR__ . '/auth.php';

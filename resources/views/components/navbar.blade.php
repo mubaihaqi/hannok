@@ -77,7 +77,7 @@
                         <li><a href="#" title=""
                                 class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                 Settings </a></li>
-                        <li><a href="#" title=""
+                        <li><a href="/favorite" title=""
                                 class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                 Favourites </a></li>
                         <li><a href="#" title=""
