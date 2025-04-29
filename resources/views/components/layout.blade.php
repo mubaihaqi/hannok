@@ -61,7 +61,7 @@
                 .catch(error => {
                     console.error('Error:', error);
                     Toast.fire({
-                        icon: 'error',
+                        icon: 'warning',
                         title: error.message
                     });
                 });
@@ -111,6 +111,42 @@
             path: '{{ asset('lottie/emptycart.json') }}'
         });
 
+        var cartAnimation = lottie.loadAnimation({
+            container: document.getElementById('carticon-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: '{{ asset('lottie/carticon.json') }}'
+        });
+
+        // Mulai animasi saat di-hover
+        document.getElementById('iniCart').addEventListener('mouseenter', function() {
+            cartAnimation.play();
+        });
+
+        // Hentikan animasi saat hover dilepas
+        document.getElementById('iniCart').addEventListener('mouseleave', function() {
+            cartAnimation.stop();
+        });
+
+        var menuAnimation = lottie.loadAnimation({
+            container: document.getElementById('arrow-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: '{{ asset('lottie/arrow.json') }}'
+        });
+
+        // Mulai animasi saat di-hover
+        document.getElementById('dropdownAvatarNameButton').addEventListener('mouseenter', function() {
+            menuAnimation.play();
+        });
+
+        // Hentikan animasi saat hover dilepas
+        document.getElementById('dropdownAvatarNameButton').addEventListener('mouseleave', function() {
+            menuAnimation.stop();
+        });
+
         function addToFavorite(bookId) {
             fetch(`/favorite/add/${bookId}`, {
                     method: 'POST',
@@ -123,6 +159,9 @@
                     body: JSON.stringify({})
                 })
                 .then(response => {
+                    if (response.status === 401) {
+                        throw new Error('Anda harus login untuk menambahkan ke favorite.');
+                    }
                     if (!response.ok) {
                         throw new Error('Gagal menambahkan ke daftar favorit.');
                     }
@@ -137,7 +176,7 @@
                 .catch(error => {
                     console.error('Error:', error);
                     Toast.fire({
-                        icon: 'error',
+                        icon: 'warning',
                         title: error.message
                     });
                 });
