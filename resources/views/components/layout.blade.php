@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
     <link rel="icon" href="https://picsum.photos/48" />
+    <style>
+        #lottie-bgGradient svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* opsional, biar proporsional */
+        }
+    </style>
     <title>Hannok.com</title>
 </head>
 
@@ -181,6 +189,98 @@
                     });
                 });
         }
+
+        // Animasi Lottie untuk Background
+        var bgAnimation = lottie.loadAnimation({
+            container: document.getElementById('lottie-bgGradient'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ asset('lottie/gradient-background.json') }}'
+        });
+
+        bgAnimation.addEventListener('DOMLoaded', function() {
+            const svg = document.querySelector('#lottie-bgGradient svg');
+            if (svg) {
+                // Atur agar SVG-nya stretch full
+                svg.setAttribute("preserveAspectRatio", "none");
+                svg.style.width = "100%";
+                svg.style.height = "100%";
+                svg.style.position = "absolute"; // penting buat force full fill
+                svg.style.top = 0;
+                svg.style.left = 0;
+            }
+        });
+
+        // Animasi Socmed di login dan registration
+        var igAnimation = lottie.loadAnimation({
+            container: document.getElementById('instagram-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ asset('lottie/socmed/instagram.json') }}'
+        });
+
+        var twAnimation = lottie.loadAnimation({
+            container: document.getElementById('twitter-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ asset('lottie/socmed/twitter.json') }}'
+        });
+
+        var liAnimation = lottie.loadAnimation({
+            container: document.getElementById('linkedin-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ asset('lottie/socmed/linkedin.json') }}'
+        });
+
+        var ytAnimation = lottie.loadAnimation({
+            container: document.getElementById('youtube-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ asset('lottie/socmed/youtube.json') }}'
+        });
+
+        var gtAnimation = lottie.loadAnimation({
+            container: document.getElementById('github-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: '{{ asset('lottie/login/github.json') }}'
+        });
+
+        document.getElementById('github-login').addEventListener('mouseenter', function() {
+            gtAnimation.play();
+        });
+
+        document.getElementById('github-login').addEventListener('mouseleave', function() {
+            gtAnimation.stop();
+        });
+
+        var ggAnimation = lottie.loadAnimation({
+            container: document.getElementById('google-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: '{{ asset('lottie/login/google.json') }}'
+        });
+
+        document.getElementById('google-login').addEventListener('mouseenter', function() {
+            ggAnimation.play();
+        });
+
+        document.getElementById('google-login').addEventListener('mouseleave', function() {
+            ggAnimation.stop();
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById("sceneVideo");
+            video.playbackRate = 0.4; // ubah jadi 0.5 untuk lambat, 2 untuk cepat
+        });
     </script>
 
 </body>

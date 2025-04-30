@@ -1,4 +1,5 @@
-<nav class="bg-white dark:bg-gray-800 fixed top-0 left-0 w-full z-50 shadow-md">
+<nav
+    class="bg-white/70 backdrop-blur-xl border border-white/20 dark:bg-gray-800 fixed top-0 left-0 w-full z-50 shadow-md">
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
         <div class="flex items-center justify-between">
 
@@ -56,7 +57,7 @@
                     <img class="w-8 h-8 me-2 rounded-full" src="https://picsum.photos/48" alt="user photo">
                     <span
                         class="group-hover:font-semibold group-hover:text-sky-700 transition-all duration-[600ms] ease-in-out">{{ Auth::check() ? Auth::user()->username : 'Jawaaaaa' }}</span>
-                    <div id="arrow-lottie" class="w-6 h-6 ml-1 -rotate-90"></div>
+                    <div id="arrow-lottie" class="w-6 h-6 ml-1"></div>
                 </button>
 
                 <!-- Dropdown menu -->

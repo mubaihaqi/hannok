@@ -26,4 +26,18 @@
         scrollbar-width: thin;
         scrollbar-color: #ffffff #ffffff; /* thumb: sky-200, track: abu */
     }
+
+    .btn-hover-effect::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: #525252; /* warna background hover*/
+        width: 0%;
+        z-index: 0;
+        transition: width 0.7s ease-in-out;
+    }
+
+    .btn-hover-effect:hover::before {
+        width: 100%;
+    }
 }
